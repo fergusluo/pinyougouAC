@@ -1,0 +1,27 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+# 请修改成自己的数据库
+/pinyougou_dao/src/main/resources/properties/db.properties
+# 请修改成自己的fastDfs服务器
+/pinyougou_shop_web/src/main/resources/pyg-web.properties
+# 请修改成自己的端口号（多个、用默认快捷键ctrl+shift+n，输入文件名可以快速的找到对应文件）
+spring-security.xml
+# 请修改成自己的生成静态页文件地址
+/pinyougou_seckill_service/src/main/resources/properties/pyg-service.properties
+# 请修改成自己的阿里云
+/pinyougou_pay_service/src/main/resources/properties/weixinpay.properties
+# 请修改成自己的路径
+/pinyougou_page_service/src/main/resources/properties/pyg-service.properties
+# 集群版zookeeper和单机版自己决定，不要上传
+/pinyougou_content_service/src/main/resources/spring/applicationContext-service.xml
+# 集群版redis和单机版自己决定，不要上传
+/pinyougou_common/src/main/resources/spring/applicationContext-redis.xml
+# 集群版配置，自己改不要上传
+/pinyougou_common/src/main/resources/properties
