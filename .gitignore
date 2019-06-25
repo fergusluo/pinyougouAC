@@ -24,4 +24,4 @@ spring-security.xml
 # 集群版redis和单机版自己决定，不要上传
 /pinyougou_common/src/main/resources/spring/applicationContext-redis.xml
 # 集群版配置，自己改不要上传
-/pinyougou_common/src/main/resources/properties
+/pinyougou_common/src/main/resources/properties/redis-cluster-config.properties
