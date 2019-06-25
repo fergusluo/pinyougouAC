@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--配置单例DefaultMQPushConsumer-->
+    <bean id="defaultMQPushConsumer" class="org.apache.rocketmq.client.consumer.DefaultMQPushConsumer"
+        init-method="start" destroy-method="shutdown">
+        <property name="consumerGroup" value="pyg-page-service-group"/>
+        <property name="namesrvAddr" value="127.0.0.1:9876"/>
+        <property name="subscription">
+            <map>
+                <!--设置主题-->
+                <entry key="topic-goods">
+                    <!--设置标签-->
+                    <value>*</value>
+                </entry>
+            </map>
+        </property>
+        <!--
+           消息模式设置
+           广播模式：BROADCASTING
+           集群模式：CLUSTERING
+       -->
+        <property name="messageModel" value="BROADCASTING"/>
+
+        <property name="messageListener" ref="messageListener"/>
+    </bean>
+
+    <!--创建消息监听器-->
+    <bean id="messageListener" class="com.pinyougou.page.listener.MessageListener"/>
+</beans>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--配置放行资源-->
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/plugins/**" security="none"/>
+    <http pattern="/login.html" security="none"/>
+
+    <!-- 页面拦截规则 -->
+    <!--use-expressions 为是否使用使用 Spring 表达式语言（ SpEL ），
+        默认为true ,如果开启，则拦截的配置应该写成以下形式: access="hasRole('ROLE_USER')"-->
+    <http use-expressions="false">
+        <!--intercept-url 表示拦截页面
+            /*  表示的是该目录下的资源，只包括本级目录不包括下级目录
+            /** 表示的是该目录以及该目录下所有级别子目录的资源
+            access:这里必需是ROLE_前缀，配置角色的意思
+            ROLE_:是我们角色名必须的开头
+        -->
+        <intercept-url pattern="/**" access="ROLE_ADMIN" />
+
+        <!--开启表单登陆功能
+            注意，接下来要填写的参数路径前面必须带"/"
+            login-page:配置默认的登录页
+            default-target-url:配置登录成功后跳转的url
+            authentication-failure-url:配置登录失败跳转的url
+            always-use-default-target:登录成功默认跳转到default-target-url
+            login-processing-url:配置登录请求表单提交的处理url，默认就是/login,我们一般不改
+            username-parameter:配置表单用户名提交的name属性，默认username，我们一般不改
+            password-parameter:配置表单密码提交的name属性，默认password，我们一般不改
+        -->
+        <form-login login-page="/login.html" default-target-url="/admin/index.html"
+                    authentication-failure-url="/login.html"
+                    always-use-default-target="true"/>
+        <!--关闭跨站请求伪造功能-->
+        <csrf disabled="true"/>
+
+        <!--让springSecurity不拦截iframe-->
+        <headers>
+            <frame-options policy="SAMEORIGIN"/>
+        </headers>
+
+        <!--开启登出功能
+            logout-url:配置登出的url，默认就是/logout，一般不改
+            logout-success-url:配置登出成功后，跳转的url，默认就是上面form-login配置好的登录页，一般也不改
+        -->
+        <logout/>
+    </http>
+
+    <!-- 认证管理器 -->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <!--配置用户名与密码所属角色为ROLE_USER-->
+                <user name="admin" password="123456" authorities="ROLE_ADMIN"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>
