@@ -20,6 +20,22 @@ public class TbBrand implements Serializable {
     @Column(name = "first_char")
     private String firstChar;
 
+    /**
+     * 状态
+     */
+    @Column(name = "brand_status")
+    private String brandStatus;
+    /**
+     * 是否删除
+     */
+    @Column(name = "is_delete")
+    private String isDelete;
+    /**
+     * 商家id
+     */
+    @Column(name = "seller_id")
+    private String sellerId;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -80,17 +96,68 @@ public class TbBrand implements Serializable {
         this.firstChar = firstChar;
     }
 
+    /**
+     * 获取品牌状态
+     *
+     * @return BrandStatus 品牌状态
+     */
+    public String getBrandStatus() {
+        return brandStatus;
+    }
+
+
+    /**
+     * 设置品牌状态
+     *
+     * @param brandStatus 品牌状态
+     */
+    public void setBrandStatus(String brandStatus) {
+        this.brandStatus = brandStatus;
+    }
+
+    /**
+     * 获取是否删除
+     *
+     * @return isDelete 删除状态
+     */
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    /**
+     * 设置是否删除
+     *
+     * @param isDelete 删除状态
+     */
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    /**
+     * 获取商家id
+     * @return SellerId 商家id
+     */
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    /**
+     * 设置商家id
+     * @return SellerId 商家id
+     */
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", firstChar=").append(firstChar);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "TbBrand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", firstChar='" + firstChar + '\'' +
+                ", brandStatus='" + brandStatus + '\'' +
+                ", isDelete='" + isDelete + '\'' +
+                ", sellerId='" + sellerId + '\'' +
+                '}';
     }
 }
