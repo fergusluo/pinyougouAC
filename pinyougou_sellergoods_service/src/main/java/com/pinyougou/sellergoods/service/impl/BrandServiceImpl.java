@@ -96,20 +96,41 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	/**
-	 * 批量删除
+	 * 批量伪删除
 	 */
 	@Override
 	public void delete(Long[] ids) {
-		//数组转list
-        List longs = Arrays.asList(ids);
-        //构建查询条件
-        Example example = new Example(TbBrand.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andIn("id", longs);
-
-        //跟据查询条件删除数据
-        brandMapper.deleteByExample(example);
+		//更新的对象
+		TbBrand record = new TbBrand();
+		//设置状态
+		record.setIsDelete("1");
+		//组装条件
+		Example example = new Example(TbBrand.class);
+		Example.Criteria criteria = example.createCriteria();
+		//数组转换list
+		List longs = Arrays.asList(ids);
+		criteria.andIn("id", longs);
+		brandMapper.updateByExampleSelective(record, example);
 	}
-	
-	
+
+	/**
+	 * @param ids 品牌id数组
+	 * @param status
+	 */
+	@Override
+	public void updateBrandStatus(Long[] ids, String status) {
+		//更新的对象
+		TbBrand record = new TbBrand();
+		//设置状态
+		record.setBrandStatus(status);
+		//组装条件
+		Example example = new Example(TbBrand.class);
+		Example.Criteria criteria = example.createCriteria();
+		//数组转换list
+		List longs = Arrays.asList(ids);
+		criteria.andIn("id", longs);
+		brandMapper.updateByExampleSelective(record, example);
+	}
+
+
 }
