@@ -15,26 +15,26 @@ public interface BrandService {
 	 * @return
 	 */
 	public List<TbBrand> findAll();
-
-
+	
+	
 	/**
-	 * 分页查询列表
-	 * @return
-	 */
-	public PageResult<TbBrand> findPage(int pageNum, int pageSize,TbBrand brand);
-
-
+     * 分页查询列表
+     * @return
+     */
+    public PageResult<TbBrand> findPage(int pageNum, int pageSize,TbBrand brand);
+	
+	
 	/**
 	 * 增加
-	 */
+	*/
 	public void add(TbBrand brand);
-
-
+	
+	
 	/**
 	 * 修改
 	 */
 	public void update(TbBrand brand);
-
+	
 
 	/**
 	 * 根据ID获取实体
@@ -42,8 +42,8 @@ public interface BrandService {
 	 * @return
 	 */
 	public TbBrand getById(Long id);
-
-
+	
+	
 	/**
 	 * 批量删除
 	 * @param ids
@@ -51,4 +51,10 @@ public interface BrandService {
 	public void delete(Long [] ids);
 
 
+	/**
+	 * 更新品牌状态，brand表有更改请咨询罗强
+	 * @param ids
+	 * @param status
+	 */
+	public void updateBrandStatus(Long[] ids, String status);
 }

@@ -19,13 +19,14 @@ public class TbBrand implements Serializable {
      */
     @Column(name = "first_char")
     private String firstChar;
+
     /**
-     * 品牌状态
+     * 状态
      */
     @Column(name = "brand_status")
     private String brandStatus;
     /**
-     * 删除状态
+     * 是否删除
      */
     @Column(name = "is_delete")
     private String isDelete;
@@ -39,10 +40,9 @@ public class TbBrand implements Serializable {
 
     /**
      * 此处添加getText()是为了让前端Vue-select.js能获取取显示的名字
-     *
      * @return
      */
-    public String getText() {
+    public String getText(){
         return this.name;
     }
 
@@ -96,32 +96,57 @@ public class TbBrand implements Serializable {
         this.firstChar = firstChar;
     }
 
+    /**
+     * 获取品牌状态
+     *
+     * @return BrandStatus 品牌状态
+     */
     public String getBrandStatus() {
         return brandStatus;
     }
 
+
+    /**
+     * 设置品牌状态
+     *
+     * @param brandStatus 品牌状态
+     */
     public void setBrandStatus(String brandStatus) {
         this.brandStatus = brandStatus;
     }
 
+    /**
+     * 获取是否删除
+     *
+     * @return isDelete 删除状态
+     */
     public String getIsDelete() {
         return isDelete;
     }
 
+    /**
+     * 设置是否删除
+     *
+     * @param isDelete 删除状态
+     */
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 
+    /**
+     * 获取商家id
+     * @return SellerId 商家id
+     */
     public String getSellerId() {
         return sellerId;
     }
 
+    /**
+     * 设置商家id
+     * @return SellerId 商家id
+     */
     public void setSellerId(String sellerId) {
         this.sellerId = sellerId;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     @Override

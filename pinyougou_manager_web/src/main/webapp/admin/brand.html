@@ -39,10 +39,16 @@
                         <button @click="entity={}" type="button" class="btn btn-default" title="新建" data-toggle="modal"
                                 data-target="#editModal"><i class="fa fa-file-o"></i> 新建
                         </button>
-                        <button @click="dele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        <button @click="updateBrandStatus('1')"  type="button" class="btn btn-default" title="审核通过"><i class="fa fa-trash-o"></i> 审核通过
+                        </button>
+                        <!--brand表有更改请咨询罗强-->
+                        <button @click="updateBrandStatus('2')" type="button" class="btn btn-default" title="审核驳回"><i class="fa fa-trash-o"></i> 审核驳回
                         </button>
                         <button @click="findPage(pageNo)" type="button" class="btn btn-default" title="刷新"><i
                                 class="fa fa-refresh"></i> 刷新
+                        </button>
+                        <!--brand表有更改请咨询罗强-->
+                        <button @click="isDele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
                         </button>
                     </div>
                 </div>
@@ -65,17 +71,26 @@
                     <th class="sorting_asc">品牌ID</th>
                     <th class="sorting">品牌名称</th>
                     <th class="sorting">品牌首字母</th>
+                    <th class="text-center">商家id</th>
+                    <th class="text-center">品牌状态</th>
+                    <th class="text-center">是否删除</th>
+
                     <th class="text-center">操作</th>
                 </tr>
                 </thead>
                 <tbody>
+                <!--test-->
                 <tr v-for="brand in list">
                     <td><input :value="brand.id" v-model="ids" type="checkbox"></td>
                     <td>{{brand.id}}</td>
                     <td>{{brand.name}}</td>
                     <td>{{brand.firstChar}}</td>
+                    <td>{{brand.sellerId}}</td>
+                    <td>{{status[brand.brandStatus]}}</td>
+                    <td>{{isDelete[brand.isDelete]}}</td>
                     <td class="text-center">
-                        <button @click="getById(brand.id)" type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">
+                        <!--disabled按钮不可用-->
+                        <button @click="getById(brand.id)" disabled type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">
                             修改
                         </button>
                     </td>
