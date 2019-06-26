@@ -14,10 +14,14 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/echarts/echarts.min.js"></script>
+    <!--引入Vue相关JS-->
+    <script src="../plugins/Vue/vuejs-2.5.16.js"></script>
+    <script src="../plugins/Vue/axios-0.18.0.js"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+<div id="app">
    <!-- 内容区域 -->
 
 
@@ -101,10 +105,80 @@
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
+                <div align="center">
+                    起始时间:<input type="date" v-model="startDateStr">
+                    终止时间:<input type="date" v-model="endDateStr">
+                    <button @click="checkSalesBetweenDays()">查找</button>
+                </div>
+                <div id="salesCharts" style="width: 1250px;height:300px;"></div>
+                <!--{{eChart}}-->
             </section>
             <!-- 正文区域 /-->
 
         <!-- 内容区域 /-->
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            //声明数据列表变量，供v-for使用
+            list: [],
+            searchEntity: {startDateStr: '', endDateStr: ''},
+            eChart: {day: [], salesCount: []},
+            //起始日期
+            startDateStr: '',
+            //终止日期
+            endDateStr: ''
+        },
+        methods: {
+            //查询echarts信息(销售额List及日期List)
+            findSalesCharts: function () {
+                axios.post("../echarts/findSalesCharts.do?startDateStr=" + this.startDateStr + "&endDateStr=" + this.endDateStr).then(function (response) {
+                    //vue把数据列表包装在data属性中
+                    app.eChart = response.data;
+                    //设置ECharts数据
+                    charts();
+                })
+            },
+            //日期查询功能调用
+            checkSalesBetweenDays: function () {
+                charts();
+            }
+        },
+        created: function () {
+            this.findSalesCharts();
+        }
+    });
+
+    //ECharts
+    var charts = function () {
+        var myChart = echarts.init(document.getElementById('salesCharts'));
+        axios.post("../echarts/findSalesCharts.do?startDateStr=" + app.startDateStr + "&endDateStr=" + app.endDateStr).then(function (response) {
+            //vue把数据列表包装在data属性中
+            app.eChart = response.data;
+            var salesCountList = app.eChart.salesCount;
+            var dayList = app.eChart.day;
+            // 基于准备好的dom，初始化echarts实例
+            // 指定图表的配置项和数据
+            myChart.setOption({
+                xAxis: {
+                    type: 'category',
+                    name: '日期',
+                    data: dayList
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '销售额',
+                },
+                series: [{
+                    data: salesCountList,
+                    type: 'line'
+                }]
+            });
+        });
+    };
+</script>
 </body>
 
 </html>

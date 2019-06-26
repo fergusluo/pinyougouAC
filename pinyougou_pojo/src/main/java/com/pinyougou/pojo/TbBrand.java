@@ -151,13 +151,15 @@ public class TbBrand implements Serializable {
 
     @Override
     public String toString() {
-        return "TbBrand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", firstChar='" + firstChar + '\'' +
-                ", brandStatus='" + brandStatus + '\'' +
-                ", isDelete='" + isDelete + '\'' +
-                ", sellerId='" + sellerId + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", firstChar=").append(firstChar);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }
