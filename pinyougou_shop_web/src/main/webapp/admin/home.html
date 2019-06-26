@@ -107,13 +107,14 @@
         </div>
         <!-- /.row -->
 
-        {{eChart}}
+        <!--{{eChart}}-->
         <div align="center">
             起始时间:<input type="date" v-model="startDateStr">
             终止时间:<input type="date" v-model="endDateStr">
             <button @click="checkSalesBetweenDays()">查找</button>
         </div>
         <div id="salesCharts" style="width: 1250px;height:300px;"></div>
+        <!--{{eChart}}-->
     </section>
     <!-- 正文区域 /-->
 </div>
@@ -127,19 +128,23 @@
             list: [],
             searchEntity: {startDateStr: '', endDateStr: ''},
             eChart: {day: [], salesCount: []},
-            option:{},
-            startDateStr:'',
-            endDateStr:''
+            //起始日期
+            startDateStr: '',
+            //终止日期
+            endDateStr: ''
         },
         methods: {
+            //查询echarts信息(销售额List及日期List)
             findSalesCharts: function () {
-                axios.post("../echarts/findSalesCharts.do?startDateStr="+this.startDateStr+"&endDateStr="+this.endDateStr ).then(function (response) {
+                axios.post("../echarts/findSalesCharts.do").then(function (response) {
                     //vue把数据列表包装在data属性中
                     app.eChart = response.data;
+                    //设置ECharts数据
                     charts();
                 })
             },
-            checkSalesBetweenDays:function () {
+            //日期查询功能调用
+            checkSalesBetweenDays: function () {
                 charts();
             }
         },
@@ -148,12 +153,14 @@
         }
     });
 
+
     //ECharts
     var charts = function () {
         var myChart = echarts.init(document.getElementById('salesCharts'));
-        axios.post("../echarts/findSalesCharts.do?startDateStr="+app.startDateStr+"&endDateStr="+app.endDateStr).then(function (response) {
+        axios.post("../echarts/findSalesCharts.do?startDateStr=" + app.startDateStr + "&endDateStr=" + app.endDateStr).then(function (response) {
             //vue把数据列表包装在data属性中
             app.eChart = response.data;
+            //中间变量
             var salesCountList = app.eChart.salesCount;
             var dayList = app.eChart.day;
             // 基于准备好的dom，初始化echarts实例
@@ -175,27 +182,6 @@
             });
         });
     };
-
-    // // 基于准备好的dom，初始化echarts实例
-    // var myChart = echarts.init(document.getElementById('salesCharts'));
-    // // 指定图表的配置项和数据
-    // var option = {
-    //     xAxis: {
-    //         type: 'category',
-    //         name: '日期',
-    //         data: dayList
-    //     },
-    //     yAxis: {
-    //         type: 'value',
-    //         name: '销售额',
-    //     },
-    //     series: [{
-    //         data: salesCountList,
-    //         type: 'line'
-    //     }]
-    // };
-    // // 使用刚指定的配置项和数据显示图表。
-    // myChart.setOption(option);
 </script>
 </body>
 
