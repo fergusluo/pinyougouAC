@@ -96,7 +96,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	/**
-	 * 批量伪删除
+	 * 批量伪删除，brand表有更改请咨询罗强
 	 */
 	@Override
 	public void delete(Long[] ids) {
@@ -114,6 +114,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	/**
+	 * brand表有更改请咨询罗强
 	 * @param ids 品牌id数组
 	 * @param status
 	 */
