@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
+import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.pojo.TbSpecificationOption;
 import com.pinyougou.pojogroup.Specification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,6 +131,11 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 */
 	@Override
 	public void delete(Long[] ids) {
+		Specification specification = new Specification();
+		TbSpecification tbSpecification = new TbSpecification();
+		//设置状态
+		tbSpecification.setIsDelete("1");
+		specification.setSpecification(tbSpecification);
 		//数组转list
         List longs = Arrays.asList(ids);
         //构建查询条件
@@ -138,13 +144,9 @@ public class SpecificationServiceImpl implements SpecificationService {
         criteria.andIn("id", longs);
 
         //跟据查询条件删除数据
-        specificationMapper.deleteByExample(example);
+        specificationMapper.updateByExampleSelective(tbSpecification,example);
 
-        //删除规格选项列表
-		Example exampleSpec = new Example(TbSpecificationOption.class);
-		Example.Criteria criteria1 = exampleSpec.createCriteria();
-		criteria1.andIn("specId", longs);
-		optionMapper.deleteByExample(exampleSpec);
+
 
 		//删除关联数据规格选项--不推荐此方式
 		/*for (Long id : ids) {
@@ -154,6 +156,28 @@ public class SpecificationServiceImpl implements SpecificationService {
 		}*/
 
 	}
-	
-	
+
+	/**
+	 * 修改规格审核状态,注意数据库表tb_specification，pojo有更改请咨询罗强
+	 * @param ids
+	 * @param status
+	 */
+	@Override
+	public void updateStatus(Long[] ids, String status) {
+		//更新的对象
+		Specification record = new Specification();
+		TbSpecification tbSpecification = new TbSpecification();
+		//设置状态
+		tbSpecification.setStatus(status);
+		record.setSpecification(tbSpecification);
+		//组装条件
+		Example example = new Example(TbSpecification.class);
+		Example.Criteria criteria = example.createCriteria();
+		//数组转换list
+		List longs = Arrays.asList(ids);
+		criteria.andIn("id", longs);
+		specificationMapper.updateByExampleSelective(tbSpecification, example);
+	}
+
+
 }
