@@ -45,10 +45,16 @@ public interface BrandService {
 	
 	
 	/**
-	 * 批量删除
+	 * 批量伪删除
 	 * @param ids
 	 */
 	public void delete(Long [] ids);
 
-	
+
+	/**
+	 * 更新品牌状态
+	 * @param ids
+	 * @param status
+	 */
+	public void updateBrandStatus(Long[] ids, String status);
 }
