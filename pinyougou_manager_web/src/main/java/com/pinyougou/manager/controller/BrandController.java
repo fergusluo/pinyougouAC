@@ -91,7 +91,7 @@ public class BrandController {
 	}
 	
 	/**
-	 * 批量伪删除
+	 * 批量伪删除，brand表有更改请咨询罗强
 	 * @param ids
 	 * @return
 	 */
@@ -107,7 +107,7 @@ public class BrandController {
 	}
 
 	/**
-	 * 更新品牌状态
+	 * 更新品牌状态，brand表有更改请咨询罗强
 	 * @param ids
 	 * @param status
 	 * @return

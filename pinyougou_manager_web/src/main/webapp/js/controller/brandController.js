@@ -68,6 +68,7 @@ window.onload=function () {
 				})
 			},
 			//批量删除数据
+			<!--brand表有更改请咨询罗强-->
 			isDele:function () {
 				axios.get("../brand/isDele.do?ids="+this.ids).then(function (response) {
 					if(response.data.success){
@@ -81,6 +82,7 @@ window.onload=function () {
 				})
 			},
 			//更改状态
+			<!--brand表有更改请咨询罗强-->
 			updateBrandStatus:function (status) {
 				axios.get("/brand/updateBrandStatus.do?status=" + status + "&ids=" +this.ids )
 					.then(function (response) {
