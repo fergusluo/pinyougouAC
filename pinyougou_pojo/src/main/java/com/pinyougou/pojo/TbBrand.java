@@ -19,14 +19,30 @@ public class TbBrand implements Serializable {
      */
     @Column(name = "first_char")
     private String firstChar;
+    /**
+     * 品牌状态
+     */
+    @Column(name = "brand_status")
+    private String brandStatus;
+    /**
+     * 删除状态
+     */
+    @Column(name = "is_delete")
+    private String isDelete;
+    /**
+     * 商家id
+     */
+    @Column(name = "seller_id")
+    private String sellerId;
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 此处添加getText()是为了让前端Vue-select.js能获取取显示的名字
+     *
      * @return
      */
-    public String getText(){
+    public String getText() {
         return this.name;
     }
 
@@ -78,6 +94,34 @@ public class TbBrand implements Serializable {
      */
     public void setFirstChar(String firstChar) {
         this.firstChar = firstChar;
+    }
+
+    public String getBrandStatus() {
+        return brandStatus;
+    }
+
+    public void setBrandStatus(String brandStatus) {
+        this.brandStatus = brandStatus;
+    }
+
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override
