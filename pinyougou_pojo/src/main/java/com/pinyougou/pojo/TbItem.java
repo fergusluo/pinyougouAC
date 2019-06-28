@@ -60,6 +60,12 @@ public class TbItem implements Serializable {
     private String status;
 
     /**
+     * 商品上下架状态，1-上架，2-下架
+     */
+    @Column(name = "updownStatus")
+    private String updownStatus;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
@@ -276,6 +282,22 @@ public class TbItem implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * 获取商品上下架状态，1-上架，2-下架
+     * @return
+     */
+    public String getUpdownStatus() {
+        return updownStatus;
+    }
+
+    /**
+     * 设置商品上下架状态，1-上架，2-下架
+     * @return
+     */
+    public void setUpdownStatus(String updownStatus) {
+        this.updownStatus = updownStatus;
     }
 
     /**
