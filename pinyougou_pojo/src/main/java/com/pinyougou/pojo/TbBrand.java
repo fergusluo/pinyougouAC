@@ -1,7 +1,7 @@
 package com.pinyougou.pojo;
 
-import javax.persistence.*;
-import java.io.Serializable;
+        import javax.persistence.*;
+        import java.io.Serializable;
 
 @Table(name = "tb_brand")
 public class TbBrand implements Serializable {
@@ -38,115 +38,56 @@ public class TbBrand implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 此处添加getText()是为了让前端Vue-select.js能获取取显示的名字
-     * @return
-     */
-    public String getText(){
-        return this.name;
-    }
-
-    /**
-     * @return id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * 获取品牌名称
-     *
-     * @return name - 品牌名称
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * 设置品牌名称
-     *
-     * @param name 品牌名称
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * 获取品牌首字母
-     *
-     * @return first_char - 品牌首字母
-     */
     public String getFirstChar() {
         return firstChar;
     }
 
-    /**
-     * 设置品牌首字母
-     *
-     * @param firstChar 品牌首字母
-     */
     public void setFirstChar(String firstChar) {
         this.firstChar = firstChar;
     }
 
-    /**
-     * 获取品牌状态
-     *
-     * @return BrandStatus 品牌状态
-     */
     public String getBrandStatus() {
         return brandStatus;
     }
 
-
-    /**
-     * 设置品牌状态
-     *
-     * @param brandStatus 品牌状态
-     */
     public void setBrandStatus(String brandStatus) {
         this.brandStatus = brandStatus;
     }
 
-    /**
-     * 获取是否删除
-     *
-     * @return isDelete 删除状态
-     */
     public String getIsDelete() {
         return isDelete;
     }
 
-    /**
-     * 设置是否删除
-     *
-     * @param isDelete 删除状态
-     */
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 
-    /**
-     * 获取商家id
-     * @return SellerId 商家id
-     */
     public String getSellerId() {
         return sellerId;
     }
 
-    /**
-     * 设置商家id
-     * @return SellerId 商家id
-     */
     public void setSellerId(String sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override

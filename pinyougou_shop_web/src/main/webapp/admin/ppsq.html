@@ -26,7 +26,7 @@
 <!-- .box-body -->
 <div id="app">
     <div class="box-header with-border">
-        <h3 class="box-title">品牌申请</h3>{{entity}}<br/><br/><br/>{{ids}}
+        <h3 class="box-title">品牌申请</h3>{{list}}<br/><br/>{{entity}}<br/><br/>{{ids}}
     </div>
 
     <div class="box-body">
@@ -84,7 +84,7 @@
                 <tr v-for="goods in list">
                     <td><input :value="goods.id" v-model="ids" type="checkbox"></td>
                     <td>{{goods.id}}</td>
-                    <td>{{goods.text}}</td>
+                    <td>{{goods.name}}</td>
                     <td>{{goods.firstChar}}</td>
                     <td>{{status[goods.brandStatus]}}</td>
                     <td class="text-center">
