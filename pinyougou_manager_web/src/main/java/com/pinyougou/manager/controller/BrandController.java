@@ -107,7 +107,7 @@ public class BrandController {
 	}
 
 	/**
-	 * 更新品牌状态，brand表有更改请咨询罗强
+	 * 更新品牌状态，brand表有更改请咨询罗强1
 	 * @param ids
 	 * @param status
 	 * @return
