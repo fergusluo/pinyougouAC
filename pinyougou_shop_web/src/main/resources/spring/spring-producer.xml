@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--创建一个DefaultMQProducer
+        init-method:创建好对象后调用的函数
+        destroy-method:容器销毁后调用的函数
+    -->
+    <bean id="defaultMQProducer" class="org.apache.rocketmq.client.producer.DefaultMQProducer"
+          init-method="start" destroy-method="shutdown">
+        <!--配置组名-->
+        <property name="producerGroup" value="pyg-shop-web-group"/>
+        <!--配置nameServer-->
+        <property name="namesrvAddr" value="127.0.0.1:9876"/>
+    </bean>
+</beans>
