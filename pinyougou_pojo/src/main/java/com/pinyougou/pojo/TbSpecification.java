@@ -18,6 +18,19 @@ public class TbSpecification implements Serializable {
     @Column(name = "spec_name")
     private String specName;
 
+    /**
+     * 名称
+     */
+    @Column(name = "status")
+    private String status;
+
+    /**
+     * 删除状态
+     */
+    @Column(name = "is_delete")
+    private String isDelete;
+
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -64,6 +77,38 @@ public class TbSpecification implements Serializable {
         this.specName = specName;
     }
 
+    /**
+     * 获取状态 规格状态
+     * @return
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置状态
+     * @param status 规格状态
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * 获取是否删除
+     * @return 规格是否删除
+     */
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    /**
+     * 设置是否删除
+     * @param isDelete
+     */
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -72,6 +117,8 @@ public class TbSpecification implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", specName=").append(specName);
+        sb.append(", status=").append(status);
+        sb.append(", isDelete=").append(isDelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

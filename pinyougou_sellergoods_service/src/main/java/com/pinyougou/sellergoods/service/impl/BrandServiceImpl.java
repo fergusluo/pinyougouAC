@@ -104,11 +104,12 @@ public class BrandServiceImpl implements BrandService {
 		TbBrand record = new TbBrand();
 		//设置状态
 		record.setIsDelete("1");
+
+		//数组转换list
+		List longs = Arrays.asList(ids);
 		//组装条件
 		Example example = new Example(TbBrand.class);
 		Example.Criteria criteria = example.createCriteria();
-		//数组转换list
-		List longs = Arrays.asList(ids);
 		criteria.andIn("id", longs);
 		brandMapper.updateByExampleSelective(record, example);
 	}

@@ -81,7 +81,7 @@ window.onload=function () {
 					}
 				})
 			},
-			//更改状态
+			//更改审核状态
 			<!--brand表有更改请咨询罗强-->
 			updateBrandStatus:function (status) {
 				axios.get("/brand/updateBrandStatus.do?status=" + status + "&ids=" +this.ids )

@@ -1,27 +1,29 @@
-# Created by .ignore support plugin (hsz.mobi)
+ï»¿# Created by .ignore support plugin (hsz.mobi)
 ### Example user template template
 ### Example user template
 
 # IntelliJ project files
+target
 .idea
 *.iml
 out
 gen
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄÊı¾İ¿â
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„æ•°æ®åº“
 /pinyougou_dao/src/main/resources/properties/db.properties
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄfastDfs·şÎñÆ÷
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„fastDfsæœåŠ¡å™¨
 /pinyougou_shop_web/src/main/resources/pyg-web.properties
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄ¶Ë¿ÚºÅ£¨¶à¸ö¡¢ÓÃÄ¬ÈÏ¿ì½İ¼üctrl+shift+n£¬ÊäÈëÎÄ¼şÃû¿ÉÒÔ¿ìËÙµÄÕÒµ½¶ÔÓ¦ÎÄ¼ş£©
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„ç«¯å£å·ï¼ˆå¤šä¸ªã€ç”¨é»˜è®¤å¿«æ·é”®ctrl+shift+nï¼Œè¾“å…¥æ–‡ä»¶åå¯ä»¥å¿«é€Ÿçš„æ‰¾åˆ°å¯¹åº”æ–‡ä»¶ï¼‰
 spring-security.xml
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄÉú³É¾²Ì¬Ò³ÎÄ¼şµØÖ·
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„ç”Ÿæˆé™æ€é¡µæ–‡ä»¶åœ°å€
 /pinyougou_seckill_service/src/main/resources/properties/pyg-service.properties
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄ°¢ÀïÔÆ
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„é˜¿é‡Œäº‘
 /pinyougou_pay_service/src/main/resources/properties/weixinpay.properties
-# ÇëĞŞ¸Ä³É×Ô¼ºµÄÂ·¾¶
+# è¯·ä¿®æ”¹æˆè‡ªå·±çš„è·¯å¾„
 /pinyougou_page_service/src/main/resources/properties/pyg-service.properties
-# ¼¯Èº°æzookeeperºÍµ¥»ú°æ×Ô¼º¾ö¶¨£¬²»ÒªÉÏ´«
+# é›†ç¾¤ç‰ˆzookeeperå’Œå•æœºç‰ˆè‡ªå·±å†³å®šï¼Œä¸è¦ä¸Šä¼ 
 /pinyougou_content_service/src/main/resources/spring/applicationContext-service.xml
-# ¼¯Èº°æredisºÍµ¥»ú°æ×Ô¼º¾ö¶¨£¬²»ÒªÉÏ´«
+# é›†ç¾¤ç‰ˆrediså’Œå•æœºç‰ˆè‡ªå·±å†³å®šï¼Œä¸è¦ä¸Šä¼ 
 /pinyougou_common/src/main/resources/spring/applicationContext-redis.xml
-# ¼¯Èº°æÅäÖÃ£¬×Ô¼º¸Ä²»ÒªÉÏ´«
+/pinyougou_common/src/main/resources/spring/applicationContext-redis.xml
+# é›†ç¾¤ç‰ˆé…ç½®ï¼Œè‡ªå·±æ”¹ä¸è¦ä¸Šä¼ 
 /pinyougou_common/src/main/resources/properties/redis-cluster-config.properties

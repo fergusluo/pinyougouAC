@@ -1,16 +1,17 @@
-package com.pinyougou.manager.controller;
-import java.util.List;
+package com.pinyougou.shop.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojogroup.Specification;
+import com.pinyougou.sellergoods.service.SpecificationService;
+import entity.PageResult;
+import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbSpecification;
-import com.pinyougou.sellergoods.service.SpecificationService;
 
-import entity.PageResult;
-import entity.Result;
+import java.util.List;
+
 /**
  * 请求处理器
  * @author Steven
@@ -83,11 +84,9 @@ public class SpecificationController {
 	public Specification getById(Long id){
 		return specificationService.getById(id);		
 	}
-
-
 	
 	/**
-	 * 批量伪删除,注意数据库表tb_specification，pojo有更改请咨询罗强
+	 * 批量删除
 	 * @param ids
 	 * @return
 	 */
@@ -101,23 +100,5 @@ public class SpecificationController {
 			return new Result(false, "删除失败");
 		}
 	}
-
-	/**
-	 * 修改规格审核状态
-	 * @param status 状态值
-	 * @param ids 状态数组
-	 * @return
-	 */
-	@RequestMapping("/updateStatus")
-	public Result updateStatus(Long[] ids, String status){
-		try {
-			specificationService.updateStatus(ids,status);
-			return new Result(true, "修改成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Result(false, "修改失败");
-		}
-	}
-
 	
 }

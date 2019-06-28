@@ -1,5 +1,6 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,6 +195,22 @@ public class SellerServiceImpl implements SellerService {
         //跟据查询条件删除数据
         sellerMapper.deleteByExample(example);
 	}
-	
-	
+
+	/**
+	 * 查找对应id
+	 * @param name
+	 * @return
+	 */
+    @Override
+    public String getByName(String name) {
+		Example example = new Example(TbSeller.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andIn("name", Collections.singletonList(name));
+		TbSeller tbSeller = new TbSeller();
+		tbSeller.setName(name);
+		TbSeller tbSeller1 = sellerMapper.selectOne(tbSeller);
+		return tbSeller1.getSellerId();
+	}
+
+
 }

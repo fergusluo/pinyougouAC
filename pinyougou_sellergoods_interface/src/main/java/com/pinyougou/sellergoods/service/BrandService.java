@@ -45,7 +45,7 @@ public interface BrandService {
 	
 	
 	/**
-	 * 批量伪删除，brand表有更改请咨询罗强
+	 * 批量删除
 	 * @param ids
 	 */
 	public void delete(Long [] ids);
