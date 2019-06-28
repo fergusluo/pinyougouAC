@@ -19,7 +19,7 @@ public class TbSpecification implements Serializable {
     private String specName;
 
     /**
-     * 名称
+     * 状态
      */
     @Column(name = "status")
     private String status;
