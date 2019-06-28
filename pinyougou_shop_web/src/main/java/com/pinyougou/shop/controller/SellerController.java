@@ -103,5 +103,10 @@ public class SellerController {
 			return new Result(false, "删除失败");
 		}
 	}
+
+	@RequestMapping("/getByName")
+	public String delete(String name){
+		return sellerService.getByName(name);
+	}
 	
 }

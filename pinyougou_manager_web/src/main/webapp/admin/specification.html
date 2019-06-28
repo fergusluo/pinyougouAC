@@ -41,12 +41,20 @@
                         <button @click="entity.specificationOptionList=[]" type="button" class="btn btn-default" title="新建" data-toggle="modal"
                                 data-target="#editModal"><i class="fa fa-file-o"></i> 新建
                         </button>
-                        <button @click="dele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        <!--注意数据库表tb_specification，pojo有更改请咨询罗强-->
+                        <!--状态：0未审核,1已审核,2审核驳回',3关闭-->
+                        <button @click="updateStatus('1')" type="button" class="btn btn-default" title="审核通过" ><i class="fa fa-file-o"></i> 审核通过
+                        </button>
+                        <button @click="updateStatus('2')" type="button" class="btn btn-default" title="审核驳回" ><i class="fa fa-file-o"></i> 审核驳回
                         </button>
 
                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
                                 class="fa fa-refresh"></i> 刷新
                         </button>
+                        <!--isDelete:['正常','已删除'],-->
+                        <button @click="isDelete()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -66,6 +74,8 @@
                     </th>
                     <th class="sorting_asc">规格ID</th>
                     <th class="sorting">规格名称</th>
+                    <th class="sorting">规格状态</th>
+                    <th class="sorting">是否删除</th>
                     <th class="text-center">操作</th>
                 </tr>
                 </thead>
@@ -74,6 +84,9 @@
                     <td><input :value="spec.id" v-model="ids" type="checkbox"></td>
                     <td>{{spec.id}}</td>
                     <td>{{spec.specName}}</td>
+                    <td>{{status[spec.status]}}</td>
+                    <!--注意数据库表tb_specification，pojo有更改请咨询罗强-->
+                    <td>{{isDele[spec.isDelete]}}</td>
                     <td class="text-center">
                         <button @click="getById(spec.id)" type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">
                             修改

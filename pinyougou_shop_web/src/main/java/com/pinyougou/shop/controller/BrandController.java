@@ -1,22 +1,16 @@
-package com.pinyougou.manager.controller;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package com.pinyougou.shop.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.pinyougou.pojo.TbItem;
-import entity.EsItem;
-import entity.MessageInfo;
-import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.BrandService;
-
 import entity.PageResult;
 import entity.Result;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 /**
  * 请求处理器
  * @author Steven
@@ -28,26 +22,27 @@ public class BrandController {
 
 	@Reference
 	private BrandService brandService;
-	
+
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbBrand> findAll(){			
+	public List<TbBrand> findAll(){
 		return brandService.findAll();
 	}
-	
-	
+
+
 	/**
 	 * 分页查询数据
 	 * @return
 	 */
 	@RequestMapping("/findPage")
-	public PageResult  findPage(int pageNo,int pageSize,@RequestBody TbBrand brand){			
+	public PageResult  findPage(int pageNo,int pageSize,String sellerId,@RequestBody TbBrand brand){
+		brand.setSellerId(sellerId);
 		return brandService.findPage(pageNo, pageSize,brand);
 	}
-	
+
 	/**
 	 * 增加
 	 * @param brand
@@ -56,14 +51,16 @@ public class BrandController {
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbBrand brand){
 		try {
+			brand.setBrandStatus("0");
+			brand.setIsDelete("0");
 			brandService.add(brand);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(false, "增加失败");
+			return new Result(false, "有重名品牌");
 		}
 	}
-	
+
 	/**
 	 * 修改
 	 * @param brand
@@ -72,14 +69,16 @@ public class BrandController {
 	@RequestMapping("/update")
 	public Result update(@RequestBody TbBrand brand){
 		try {
+			brand.setBrandStatus("0");
+			brand.setIsDelete("0");
 			brandService.update(brand);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "修改失败");
 		}
-	}	
-	
+	}
+
 	/**
 	 * 获取实体
 	 * @param id
@@ -87,40 +86,22 @@ public class BrandController {
 	 */
 	@RequestMapping("/getById")
 	public TbBrand getById(Long id){
-		return brandService.getById(id);		
+		return brandService.getById(id);
 	}
-	
+
 	/**
-	 * 批量伪删除，brand表有更改请咨询罗强
+	 * 批量删除
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping("/isDele")
+	@RequestMapping("/delete")
 	public Result delete(Long [] ids){
 		try {
 			brandService.delete(ids);
-			return new Result(true, "删除成功"); 
+			return new Result(true, "删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "删除失败");
-		}
-	}
-
-	/**
-	 * 更新品牌状态，brand表有更改请咨询罗强1
-	 * @param ids
-	 * @param status
-	 * @return
-	 */
-	@RequestMapping("updateBrandStatus")
-	public Result updateStatus(Long[] ids, String status){
-		try {
-
-			brandService.updateBrandStatus(ids,status);
-			return new Result(true, "操作成功！");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Result(true, "操作成功！");
 		}
 	}
 

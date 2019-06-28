@@ -46,10 +46,16 @@ public interface SpecificationService {
 	
 	
 	/**
-	 * 批量删除
+	 * 批量删除,注意数据库表tb_specification，pojo有更改请咨询罗强
 	 * @param ids
 	 */
 	public void delete(Long [] ids);
 
-	
+
+	/**
+	 * 修改规格审核状态
+	 * @param ids
+	 * @param status
+	 */
+	public void updateStatus(Long[] ids, String status);
 }
