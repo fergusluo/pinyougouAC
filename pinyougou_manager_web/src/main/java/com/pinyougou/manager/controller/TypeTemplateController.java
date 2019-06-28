@@ -98,5 +98,26 @@ public class TypeTemplateController {
 			return new Result(false, "删除失败");
 		}
 	}
+
+
+
+
+	/**
+	 * 更新模板状态，tbTypeTemplate表有更改请咨询罗强
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("updateStatus")
+	public Result updateStatus(Long[] ids, String status){
+		try {
+
+			typeTemplateService.updateStatus(ids,status);
+			return new Result(true, "操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true, "操作成功！");
+		}
+	}
 	
 }

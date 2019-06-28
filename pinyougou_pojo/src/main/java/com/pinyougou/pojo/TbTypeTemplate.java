@@ -32,6 +32,16 @@ public class TbTypeTemplate implements Serializable {
     @Column(name = "custom_attribute_items")
     private String customAttributeItems;
 
+
+    /**
+     * 模板状态
+     */
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "is_delete")
+    private String isDelete;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -120,6 +130,38 @@ public class TbTypeTemplate implements Serializable {
         this.customAttributeItems = customAttributeItems;
     }
 
+    /**
+     * 获得属性
+     * @return
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置属性
+     * @param status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * 获取是否删除
+     * @return
+     */
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    /**
+     * 设置是否删除
+     * @param isDelete
+     */
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -131,6 +173,8 @@ public class TbTypeTemplate implements Serializable {
         sb.append(", specIds=").append(specIds);
         sb.append(", brandIds=").append(brandIds);
         sb.append(", customAttributeItems=").append(customAttributeItems);
+        sb.append(", status=").append(status);
+        sb.append(", isDelete=").append(isDelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
