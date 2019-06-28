@@ -1,8 +1,10 @@
 package com.pinyougou.sellergoods.service;
 
 import entity.ECharts;
+import entity.PieCharts;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Jin
@@ -10,4 +12,6 @@ import java.util.List;
  */
 public interface EChartsService {
     ECharts findSalesCharts(String sellerName,String startDateStr,String endDateStr);
+
+    Map<String,Object> findSalesItemsPieCharts();
 }
