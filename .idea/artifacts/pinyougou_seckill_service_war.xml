@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="pinyougou_seckill_service:war">
+    <output-path>$PROJECT_DIR$/pinyougou_seckill_service/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>pinyougou_seckill_service</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="pinyougou_seckill_service-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="pinyougou_seckill_service:war exploded" />
+    </root>
+  </artifact>
+</component>
