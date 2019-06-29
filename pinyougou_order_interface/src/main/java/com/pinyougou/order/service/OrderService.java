@@ -3,6 +3,7 @@ import java.util.List;
 import com.pinyougou.pojo.TbOrder;
 
 import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.pojogroup.Order;
 import entity.PageResult;
 /**
  * 业务逻辑接口
@@ -22,7 +23,7 @@ public interface OrderService {
      * 分页查询列表
      * @return
      */
-    public PageResult<TbOrder> findPage(int pageNum, int pageSize,TbOrder order);
+    public PageResult<Order> findPage(int pageNum, int pageSize, TbOrder order);
 	
 	
 	/**
@@ -42,7 +43,7 @@ public interface OrderService {
 	 * @param id
 	 * @return
 	 */
-	public TbOrder getById(Long id);
+	public Order getById(Long id);
 	
 	
 	/**
