@@ -26,7 +26,7 @@
 <!-- .box-body -->
 <div id="app">
     <div class="box-header with-border">
-        <h3 class="box-title">品牌申请</h3>{{entity}}<br/><br/><br/>{{ids}}
+        <h3 class="box-title">品牌申请</h3>
     </div>
 
     <div class="box-body">
@@ -43,27 +43,25 @@
                         </button>
                         <button type="button" @click="dele()" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
                         </button>
-                        <button type="button" class="btn btn-default" title="提交审核"><i class="fa fa-check"></i> 提交审核
-                        </button>
                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
                                 class="fa fa-refresh"></i> 刷新
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="box-tools pull-right">
-                <div class="has-feedback">
-                    状态：<select v-model="searchEntity.auditStatus">
-                    <option value="">全部</option>
-                    <option value="0">未审核</option>
-                    <option value="1">已审核</option>
-                    <option value="2">审核未通过</option>
-                    <option value="3">关闭</option>
-                </select>
-                    品牌名称：<input v-model="searchEntity.goodsName">
-                    <button class="btn btn-default" @click="findPage(1);goPage(1)">查询</button>
-                </div>
-            </div>
+<!--            <div class="box-tools pull-right">-->
+<!--                <div class="has-feedback">-->
+<!--                    状态：<select v-model="searchEntity.auditStatus">-->
+<!--                    <option value="">全部</option>-->
+<!--                    <option value="0">未审核</option>-->
+<!--                    <option value="1">审核通过</option>-->
+<!--                    <option value="2">审核驳回</option>-->
+<!--                    <option value="3">关闭</option>-->
+<!--                </select>-->
+<!--                    品牌名称：<input v-model="searchEntity.goodsName">-->
+<!--                    <button class="btn btn-default" @click="findPage(1);goPage(1)">查询</button>-->
+<!--                </div>-->
+<!--            </div>-->
             <!--工具栏/-->
 
             <!--数据列表-->
@@ -73,7 +71,7 @@
                     <th class="" style="padding-right:0px">
                         <input id="selall" type="checkbox" class="icheckbox_square-blue">
                     </th>
-                    <th class="sorting_asc">商品ID</th>
+                    <th class="sorting_asc">品牌ID</th>
                     <th class="sorting">品牌名称</th>
                     <th class="sorting">品牌首字母</th>
                     <th class="sorting">状态</th>
@@ -84,7 +82,7 @@
                 <tr v-for="goods in list">
                     <td><input :value="goods.id" v-model="ids" type="checkbox"></td>
                     <td>{{goods.id}}</td>
-                    <td>{{goods.text}}</td>
+                    <td>{{goods.name}}</td>
                     <td>{{goods.firstChar}}</td>
                     <td>{{status[goods.brandStatus]}}</td>
                     <td class="text-center">
@@ -137,7 +135,7 @@
     </div>
 </div>
 <!--引入Vue前端逻辑JS-->
-<script src="../js/controller/ppsqController.js"></script>
+<script src="../js/controller/brandController.js"></script>
 </body>
 
 </html>

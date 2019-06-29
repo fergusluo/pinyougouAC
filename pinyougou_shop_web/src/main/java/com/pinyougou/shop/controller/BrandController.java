@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.BrandService;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,8 @@ public class BrandController {
 	 * @return
 	 */
 	@RequestMapping("/findPage")
-	public PageResult  findPage(int pageNo,int pageSize,String sellerId,@RequestBody TbBrand brand){
+	public PageResult  findPage(int pageNo,int pageSize,@RequestBody TbBrand brand){
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
 		brand.setSellerId(sellerId);
 		return brandService.findPage(pageNo, pageSize,brand);
 	}

@@ -11,17 +11,21 @@ window.onload=function () {
 			pages:1,
 			//当前页
 			pageNo:1,
-			//声明对象:{specification:{规格名称信息},specificationOptionList:[规格选项列表]}
-			entity:{specification:{},specificationOptionList:[]},
+			//声明对象
+			entity:{},
 			//将要删除的id列表
 			ids:[],
 			//搜索包装对象
 			searchEntity:{},
+			//品牌状态
+			status:['未审核','审核通过','审核驳回','关闭'],
+			//用户名
+			loginName1:""
 		},
 		methods:{
 			//查询所有
 			findAll:function () {
-				axios.get("../specification/findAll.do").then(function (response) {
+				axios.get("../brand/findAll.do").then(function (response) {
 					//vue把数据列表包装在data属性中
 					app.list = response.data;
 				}).catch(function (err) {
@@ -30,7 +34,7 @@ window.onload=function () {
 			},
 			//分页查询
 			findPage:function (pageNo) {
-				axios.post("../specification/findPage.do?pageNo="+pageNo+"&pageSize="+10,this.searchEntity)
+				axios.post("../brand/findPage.do?pageNo="+pageNo+"&pageSize="+10,this.searchEntity)
 					.then(function (response) {
 						app.pages = response.data.pages;  //总页数
 						app.list = response.data.rows;  //数据列表
@@ -43,9 +47,10 @@ window.onload=function () {
 			},
 			//新增
 			add:function () {
-				var url = "../specification/add.do";
-				if(this.entity.specification.id != null){
-					url = "../specification/update.do";
+				app.entity.sellerId = this.loginName1;
+				var url = "../brand/add.do";
+				if(this.entity.id != null){
+					url = "../brand/update.do";
 				}
 				axios.post(url, this.entity).then(function (response) {
 					if (response.data.success) {
@@ -59,13 +64,13 @@ window.onload=function () {
 			},
 			//跟据id查询
 			getById:function (id) {
-				axios.get("../specification/getById.do?id="+id).then(function (response) {
+				axios.get("../brand/getById.do?id="+id).then(function (response) {
 					app.entity = response.data;
 				})
 			},
 			//批量删除数据
 			dele:function () {
-				axios.get("../specification/delete.do?ids="+this.ids).then(function (response) {
+				axios.get("../brand/delete.do?ids="+this.ids).then(function (response) {
 					if(response.data.success){
 						//刷新数据
 						app.findPage(app.pageNo);
@@ -75,19 +80,6 @@ window.onload=function () {
 						alert(response.data.message);
 					}
 				})
-			},
-			//表格行添加逻辑
-			addTableRow:function () {
-				//向specificationOptionList数组追加一个空对象
-				this.entity.specificationOptionList.push({});
-			},
-			/**
-			 * 删除表格行
-			 * @param index 删除的下标
-			 */
-			deleteTableRow:function (index) {
-				//删除元素-splice(下标，删除的个数)
-				this.entity.specificationOptionList.splice(index, 1);
 			}
 		},
 		//Vue对象初始化后，调用此逻辑

@@ -59,4 +59,10 @@ public interface TypeTemplateService {
 	 */
 	public List<Map> findSpecList(Long id);
 
+	/**
+	 * tbTypeTemplate表有更改请咨询罗强
+	 * @param ids
+	 * @param status
+	 */
+	public void updateStatus(Long[] ids, String status);
 }

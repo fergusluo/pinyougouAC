@@ -6,6 +6,7 @@ import com.pinyougou.pojogroup.Specification;
 import com.pinyougou.sellergoods.service.SpecificationService;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,7 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/findPage")
-	public PageResult  findPage(int pageNo,int pageSize,@RequestBody TbSpecification specification){			
+	public PageResult  findPage(int pageNo,int pageSize,@RequestBody TbSpecification specification){
 		return specificationService.findPage(pageNo, pageSize,specification);
 	}
 	
@@ -50,6 +51,12 @@ public class SpecificationController {
 	 */
 	@RequestMapping("/add")
 	public Result add(@RequestBody Specification specification){
+		//给与初始的未审核状态以及正常的删除状态
+		TbSpecification tbSpecification = specification.getSpecification();
+		tbSpecification.setStatus("0");
+		tbSpecification.setIsDelete("0");
+		specification.setSpecification(tbSpecification);
+
 		try {
 			specificationService.add(specification);
 			return new Result(true, "增加成功");
