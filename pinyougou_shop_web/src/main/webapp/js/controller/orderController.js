@@ -6,7 +6,7 @@ window.onload = function () {
         el: "#app",
         data: {
             //声明数据列表变量，供v-for使用
-            list: [{order: {orderId:0}, orderItem: []}],
+            list: [{order: {orderId:0}, orderItem: [{title:''}]}],
             //总页数
             pages: 1,
             //当前页

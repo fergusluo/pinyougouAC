@@ -100,12 +100,11 @@
 
                             <th class="text-center">操作</th>
                         </tr>
-                        {{list}}
                         </thead>
                         <tbody>
                         <tr v-for="order in list">
                             <td><input name="ids" v-model="ids" :value="order.id" type="checkbox"></td>
-                            <td>{{order.order.orderId}}</td>
+                            <td>{{order.orderId}}</td>
                             <td>{{order.orderItem[0].title}}</td>
                             <td>{{order.order.payment}}</td>
                             <td>{{order.order.createTime}}</td>
@@ -114,7 +113,7 @@
 
                             <td class="text-center">
                                 <a class="btn bg-olive btn-xs"
-                                        :href="'order_edit.html?orderId='+order.order.orderId">详情
+                                        :href="'order_edit.html?orderId='+order.orderId">详情
                                 </a>
                             </td>
                         </tr>

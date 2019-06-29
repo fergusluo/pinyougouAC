@@ -9,6 +9,15 @@ import java.util.List;
 public class Order implements Serializable {
     private TbOrder order;
     private List<TbOrderItem> orderItem;
+    private String orderId;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public TbOrder getOrder() {
         return order;
@@ -16,6 +25,7 @@ public class Order implements Serializable {
 
     public void setOrder(TbOrder order) {
         this.order = order;
+        this.orderId = order.getOrderId().toString();
     }
 
     public List<TbOrderItem> getOrderItem() {
@@ -31,6 +41,7 @@ public class Order implements Serializable {
         return "Order{" +
                 "order=" + order +
                 ", orderItem=" + orderItem +
+                ", orderId='" + orderId + '\'' +
                 '}';
     }
 }
