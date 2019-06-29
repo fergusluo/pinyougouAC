@@ -19,10 +19,6 @@ window.onload=function () {
 			entity:{customAttributeItems:[]},
 			//将要删除的id列表
 			ids:[],
-			//模板状态
-			status:['未审核','已审核','审核驳回','关闭'],
-			//模板删除状态
-			isDelete:['正常','已删除'],
 			//搜索包装对象
 			searchEntity:{},
 			//品牌列表
@@ -81,9 +77,8 @@ window.onload=function () {
 					app.entity.customAttributeItems = JSON.parse(app.entity.customAttributeItems);
 				})
 			},
-			//批量伪删除数据
-			<!--tbTypeTemplate表有更改请咨询罗强-->
-			isDele:function () {
+			//批量删除数据
+			dele:function () {
 				axios.get("../typeTemplate/delete.do?ids="+this.ids).then(function (response) {
 					if(response.data.success){
 						//刷新数据
@@ -144,21 +139,6 @@ window.onload=function () {
 					result += list[i][key];
 				}
 				return result;
-			},
-			//更改审核状态
-			<!--tbTypeTemplate表有更改请咨询罗强-->
-			updateStatus:function (status) {
-				axios.get("/typeTemplate/updateStatus.do?status=" + status + "&ids=" +this.ids )
-					.then(function (response) {
-						if (response.data.success) {
-							//刷新数据
-							app.findPage(app.pageNo);
-							//清空勾选的ids
-							app.ids = [];
-						} else {
-							alert(response.data.message);
-						}
-					});
 			}
 		},
 		//Vue对象初始化后，调用此逻辑

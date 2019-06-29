@@ -272,12 +272,6 @@ public class GoodsServiceImpl implements GoodsService {
 		goodsMapper.updateByExampleSelective(record,example);
     }
 
-	/**
-	 * 根据goodsId和商品上下架状态查询item表
-	 * @param goodsIds
-	 * @param status
-	 * @return
-	 */
     @Override
     public List<TbItem> findItemListByGoodsIdsAndStatus(Long[] goodsIds, String status) {
 		//组装查询条件
@@ -285,67 +279,11 @@ public class GoodsServiceImpl implements GoodsService {
 		Example.Criteria criteria = example.createCriteria();
 		List longs = Arrays.asList(goodsIds);
 		criteria.andIn("goodsId", longs);
-		criteria.andEqualTo("updownStatus", status);
+		criteria.andEqualTo("status", status);
 
 		List<TbItem> itemList = itemMapper.selectByExample(example);
 		return itemList;
     }
 
-	/**根据id列表和传入的上下架状态，上下架商品
-	 * @param ids
-	 * @param status
-	 */
-	@Override
-	public void updownStatus(Long[] ids, String status) {
-		//goods表更新
-		TbGoods record = new TbGoods();
-		record.setIsMarketable(status);
-		//更新条件组装
-		Example example1 = new Example(TbGoods.class);
-		Example.Criteria criteria1 = example1.createCriteria();
-		List list1 = Arrays.asList(ids);
-		criteria1.andIn("id", list1);
-		//执行更新
-		goodsMapper.updateByExampleSelective(record,example1);
 
-		//item表更新
-		TbItem item=new TbItem();
-		item.setUpdownStatus(status);
-		//更新条件组装
-		Example example2 = new Example(TbItem.class);
-		Example.Criteria criteria2 = example2.createCriteria();
-		List list2 = Arrays.asList(ids);
-		criteria2.andIn("goodsId", list2);
-		//执行更新
-		itemMapper.updateByExampleSelective(item, example2);
-	}
-
-	///**跟据id列表，下架商品
-	// * @param ids
-	// * @param status
-	// */
-	//@Override
-	//public void offsale(Long[] ids,String status) {
-	//	//goods表更新
-	//	TbGoods record = new TbGoods();
-	//	record.setIsMarketable(status);
-	//	//更新条件组装
-	//	Example example1 = new Example(TbGoods.class);
-	//	Example.Criteria criteria1 = example1.createCriteria();
-	//	List list1 = Arrays.asList(ids);
-	//	criteria1.andIn("id", list1);
-	//	//执行更新
-	//	goodsMapper.updateByExampleSelective(record, example1);
-	//
-	//	//item表更新
-	//	TbItem item=new TbItem();
-	//	item.setUpdownStatus(status);
-	//	//更新条件组装
-	//	Example example2 = new Example(TbItem.class);
-	//	Example.Criteria criteria2 = example2.createCriteria();
-	//	List list2 = Arrays.asList(ids);
-	//	criteria2.andIn("id", list2);
-	//	//执行更新
-	//	itemMapper.updateByExampleSelective(item, example2);
-	//}
 }

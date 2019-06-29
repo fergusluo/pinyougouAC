@@ -1,7 +1,12 @@
 package com.pinyougou.user.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbAddress;
 
+import com.pinyougou.pojo.TbAreas;
+import com.pinyougou.pojo.TbCities;
+import com.pinyougou.pojo.TbProvinces;
 import entity.PageResult;
 /**
  * 业务逻辑接口
@@ -57,4 +62,39 @@ public interface AddressService {
 	 */
 	public List<TbAddress> findListByUserId(String userId);
 
+	/**
+	 * 查询省份
+	 *
+	 * @return
+	 */
+	public List<TbProvinces> findProvinces();
+	/**
+	 * 查询市
+	 *
+	 * @return
+	 */
+	public List<TbCities> findCities(String parentId);
+	/**
+	 * 查询地区
+	 *
+	 * @return
+	 */
+	public List<TbAreas> findAreas(String parentId);
+
+	/**
+	 * 查询详细地址
+	 *
+	 * @return
+	 */
+	public Map<String,String> addressMap();
+	/**
+	 * 单个删除
+	 * @param id
+	 */
+	public int deleteOne(Long id);
+	/**
+	 * 设为默认
+	 * @param id
+	 */
+	public int setDefault(Long id,String userId);
 }

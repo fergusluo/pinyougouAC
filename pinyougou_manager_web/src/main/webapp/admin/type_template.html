@@ -52,17 +52,11 @@
                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal"
                                 data-target="#editModal"><i class="fa fa-file-o"></i> 新建
                         </button>
-                        <!--status:['未审核','已审核','审核驳回','关闭'],状态：0未审核,1已审核,2审核驳回',3关闭-->
-                        <button @click="updateStatus('1')"  type="button" class="btn btn-default" title="审核通过"><i class="fa fa-trash-o"></i> 审核通过
+                        <button @click="dele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
                         </button>
-                        <!--tbTypeTemplate表有更改请咨询罗强-->
-                        <button @click="updateStatus('2')" type="button" class="btn btn-default" title="审核驳回"><i class="fa fa-trash-o"></i> 审核驳回
-                        </button>
-                        <button @click="findPage(pageNo)" type="button" class="btn btn-default" title="刷新"><i
+
+                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
                                 class="fa fa-refresh"></i> 刷新
-                        </button>
-                        <!--tbTypeTemplate表有更改请咨询罗强-->
-                        <button @click="isDele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
                         </button>
                     </div>
                 </div>
@@ -87,8 +81,6 @@
                     <th class="sorting">关联品牌</th>
                     <th class="sorting">关联规格</th>
                     <th class="sorting">扩展属性</th>
-                    <th class="text-center">模板状态</th>
-                    <th class="text-center">是否删除</th>
                     <th class="text-center">操作</th>
                 </tr>
                 </thead>
@@ -100,9 +92,6 @@
                     <td>{{jsonToString(template.brandIds,'text')}}</td>
                     <td>{{jsonToString(template.specIds,'text')}}</td>
                     <td>{{jsonToString(template.customAttributeItems,'text')}}</td>
-                    <!--tbTypeTemplate表有更改请咨询罗强-->
-                    <td>{{status[template.status]}}</td>
-                    <td>{{isDelete[template.isDelete]}}</td>
                     <td class="text-center">
                         <button @click="getById(template.id)" type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">
                             修改

@@ -11,7 +11,6 @@ import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.TbPayLog;
 import com.pinyougou.pojogroup.Cart;
-import com.pinyougou.pojogroup.Order;
 import com.pinyougou.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -21,6 +20,7 @@ import com.github.pagehelper.PageHelper;
 import com.pinyougou.mapper.TbOrderMapper;
 import com.pinyougou.pojo.TbOrder;
 import entity.PageResult;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public PageResult findPage(int pageNum, int pageSize,TbOrder order) {
-		PageResult<Order> result = new PageResult<>();
+		PageResult<TbOrder> result = new PageResult<TbOrder>();
         //设置分页条件
         PageHelper.startPage(pageNum, pageSize);
 
@@ -124,25 +124,15 @@ public class OrderServiceImpl implements OrderService {
 		}
 
         //查询数据
-        List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
-
-		//查询orderItem放入Order类中
-        List<Order> orderList = new ArrayList<>();
-		for (TbOrder tbOrder : tbOrderList) {
-			Order orderTemp = new Order();
-			TbOrderItem orderItemTemp = new TbOrderItem();
-			orderItemTemp.setOrderId(tbOrder.getOrderId());
-			List<TbOrderItem> orderItem = orderItemMapper.select(orderItemTemp);
-			orderTemp.setOrder(tbOrder);
-			orderTemp.setOrderItem(orderItem);
-			orderList.add(orderTemp);
+        List<TbOrder> list = orderMapper.selectByExample(example);
+		for (TbOrder orderNew : list) {
+			orderNew.setIdString(orderNew.getOrderId());
 		}
-		//返回数据列表
-        result.setRows(orderList);
+        //返回数据列表
+        result.setRows(list);
 
         //获取总页数
-        PageInfo<TbOrder> info = new PageInfo<>(tbOrderList);
-
+        PageInfo<TbOrder> info = new PageInfo<TbOrder>(list);
         result.setPages(info.getPages());
 		
 		return result;
@@ -244,19 +234,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 根据ID获取实体
-	 * @param orderId
+	 * @param id
 	 * @return
 	 */
 	@Override
-	public Order getById(Long orderId){
-		TbOrder tbOrder = orderMapper.selectByPrimaryKey(orderId);
-		TbOrderItem orderItem = new TbOrderItem();
-		orderItem.setOrderId(orderId);
-		List<TbOrderItem> orderItemList = orderItemMapper.select(orderItem);
-		Order order = new Order();
-		order.setOrder(tbOrder);
-		order.setOrderItem(orderItemList);
-		return order;
+	public TbOrder getById(Long id){
+		return orderMapper.selectByPrimaryKey(id);
 	}
 
 	/**
@@ -302,5 +285,14 @@ public class OrderServiceImpl implements OrderService {
 			redisTemplate.boundHashOps("payLogs").delete(payLog.getUserId());
 		}
 
+	}
+
+
+	@Override
+	public List<TbOrderItem> getOrderItems(long orderId) {
+		TbOrderItem where = new TbOrderItem();
+		where.setOrderId(orderId);
+		List<TbOrderItem> list = orderItemMapper.select(where);
+		return list;
 	}
 }
