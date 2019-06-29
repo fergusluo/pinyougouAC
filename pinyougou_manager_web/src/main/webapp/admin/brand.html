@@ -28,10 +28,8 @@
     </div>
 
     <div class="box-body">
-
         <!-- 数据表格 -->
         <div class="table-box">
-
             <!--工具栏-->
             <div class="pull-left">
                 <div class="form-group form-inline">
@@ -83,16 +81,12 @@
                 </tbody>
             </table>
             <!--数据列表/-->
-
-
         </div>
         <!-- 数据表格 /-->
         <!--分页插件{pages:总页数,current.sync:当前页,navpage:分页插件刷新数据调用的方法}
             其中声明findPage要注意接收当前页的变量：findPage(pageNo)
             注意：上面提到的变量需要在Vue中声明-->
         <navigation :pages="pages" :current.sync="pageNo" @navpage="findPage"></navigation>
-
-
     </div>
     <!-- /.box-body -->
 

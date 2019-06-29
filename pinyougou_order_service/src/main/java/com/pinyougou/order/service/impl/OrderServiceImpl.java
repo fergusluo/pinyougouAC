@@ -20,6 +20,7 @@ import com.github.pagehelper.PageHelper;
 import com.pinyougou.mapper.TbOrderMapper;
 import com.pinyougou.pojo.TbOrder;
 import entity.PageResult;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
@@ -124,6 +125,9 @@ public class OrderServiceImpl implements OrderService {
 
         //查询数据
         List<TbOrder> list = orderMapper.selectByExample(example);
+		for (TbOrder orderNew : list) {
+			orderNew.setIdString(orderNew.getOrderId());
+		}
         //返回数据列表
         result.setRows(list);
 
@@ -281,5 +285,14 @@ public class OrderServiceImpl implements OrderService {
 			redisTemplate.boundHashOps("payLogs").delete(payLog.getUserId());
 		}
 
+	}
+
+
+	@Override
+	public List<TbOrderItem> getOrderItems(long orderId) {
+		TbOrderItem where = new TbOrderItem();
+		where.setOrderId(orderId);
+		List<TbOrderItem> list = orderItemMapper.select(where);
+		return list;
 	}
 }

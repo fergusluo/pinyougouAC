@@ -220,5 +220,13 @@ public class UserServiceImpl implements UserService {
 		return code.equals(redisCode);
 	}
 
+	@Override
+	public TbUser getByUsername(String username) {
+		TbUser where = new TbUser();
+		where.setUsername(username);
+		TbUser user = userMapper.selectOne(where);
+		return user;
+	}
+
 
 }
