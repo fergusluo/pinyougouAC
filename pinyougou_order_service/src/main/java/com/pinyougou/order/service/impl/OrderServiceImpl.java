@@ -11,6 +11,7 @@ import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.TbPayLog;
 import com.pinyougou.pojogroup.Cart;
+import com.pinyougou.pojogroup.Order;
 import com.pinyougou.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -46,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public PageResult findPage(int pageNum, int pageSize,TbOrder order) {
-		PageResult<TbOrder> result = new PageResult<TbOrder>();
+		PageResult<Order> result = new PageResult<>();
         //设置分页条件
         PageHelper.startPage(pageNum, pageSize);
 
@@ -123,12 +124,25 @@ public class OrderServiceImpl implements OrderService {
 		}
 
         //查询数据
-        List<TbOrder> list = orderMapper.selectByExample(example);
-        //返回数据列表
-        result.setRows(list);
+        List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
+
+		//查询orderItem放入Order类中
+        List<Order> orderList = new ArrayList<>();
+		for (TbOrder tbOrder : tbOrderList) {
+			Order orderTemp = new Order();
+			TbOrderItem orderItemTemp = new TbOrderItem();
+			orderItemTemp.setOrderId(tbOrder.getOrderId());
+			List<TbOrderItem> orderItem = orderItemMapper.select(orderItemTemp);
+			orderTemp.setOrder(tbOrder);
+			orderTemp.setOrderItem(orderItem);
+			orderList.add(orderTemp);
+		}
+		//返回数据列表
+        result.setRows(orderList);
 
         //获取总页数
-        PageInfo<TbOrder> info = new PageInfo<TbOrder>(list);
+        PageInfo<TbOrder> info = new PageInfo<>(tbOrderList);
+
         result.setPages(info.getPages());
 		
 		return result;
@@ -230,12 +244,19 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 根据ID获取实体
-	 * @param id
+	 * @param orderId
 	 * @return
 	 */
 	@Override
-	public TbOrder getById(Long id){
-		return orderMapper.selectByPrimaryKey(id);
+	public Order getById(Long orderId){
+		TbOrder tbOrder = orderMapper.selectByPrimaryKey(orderId);
+		TbOrderItem orderItem = new TbOrderItem();
+		orderItem.setOrderId(orderId);
+		List<TbOrderItem> orderItemList = orderItemMapper.select(orderItem);
+		Order order = new Order();
+		order.setOrder(tbOrder);
+		order.setOrderItem(orderItemList);
+		return order;
 	}
 
 	/**
