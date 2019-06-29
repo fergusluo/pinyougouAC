@@ -2,6 +2,7 @@ package com.pinyougou.order.service;
 import java.util.List;
 import com.pinyougou.pojo.TbOrder;
 
+import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.TbPayLog;
 import entity.PageResult;
 /**
@@ -64,4 +65,10 @@ public interface OrderService {
 	 * @param transaction_id 微信返回的交易流水号
 	 */
 	public void updateOrderStatus(String out_trade_no,String transaction_id);
+	/**
+	 * 根据orderId获取订单实体
+	 * @param orderId
+	 * @return
+	 */
+	public List<TbOrderItem> getOrderItems(long orderId);
 }

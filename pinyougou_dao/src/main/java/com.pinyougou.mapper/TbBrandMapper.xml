@@ -8,8 +8,5 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="first_char" jdbcType="VARCHAR" property="firstChar" />
-    <result column="brand_status" jdbcType="VARCHAR" property="brandStatus" />
-    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
-    <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
   </resultMap>
 </mapper>

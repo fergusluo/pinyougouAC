@@ -6,184 +6,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"> 
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../plugins/echarts/echarts.min.js"></script>
-    <!--引入Vue相关JS-->
-    <script src="../plugins/Vue/vuejs-2.5.16.js"></script>
-    <script src="../plugins/Vue/axios-0.18.0.js"></script>
-
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-<div id="app">
-    <!-- 内容区域 -->
+
+   <!-- 内容区域 -->
 
 
-    <!-- 内容头部 -->
-    <section class="content-header">
-        <h1>
-            控制面板
-            <small>首页</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-        </ol>
-    </section>
-    <!-- 内容头部 /-->
+            <!-- 内容头部 -->
+            <section class="content-header">
+                <h1>
+                    控制面板
+                    <small>首页</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
+                </ol>
+            </section>
+            <!-- 内容头部 /-->
 
-    <!-- 正文区域 -->
-    <section class="content">
-        <!-- 统计数值 -->
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>150</h3>
+            <!-- 正文区域 -->
+            <section class="content">
 
-                        <p>新订单</p>
+
+                <!-- 统计数值 -->
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>150</h3>
+
+                                <p>新订单</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="all-order-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                <p>转化率</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
-                    <a href="all-order-manage-list.html" class="small-box-footer">详细 <i
-                            class="fa fa-arrow-circle-right"></i></a>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3>44</h3>
+
+                                <p>新注册用户</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="all-member-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h3>65</h3>
+
+                                <p>日PV</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <!-- /.row -->
+            </section>
+            <!-- 正文区域 /-->
 
-                        <p>转化率</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3>44</h3>
-
-                        <p>新注册用户</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="all-member-manage-list.html" class="small-box-footer">详细 <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>65</h3>
-
-                        <p>日PV</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-        </div>
-        <!-- /.row -->
-
-        <!--{{eChart}}-->
-        <div align="center">
-            起始时间:<input type="date" v-model="startDateStr">
-            终止时间:<input type="date" v-model="endDateStr">
-            <button @click="checkSalesBetweenDays()">查找</button>
-        </div>
-        <div id="salesCharts" style="width: 1250px;height:300px;"></div>
-        <!--{{eChart}}-->
-    </section>
-    <!-- 正文区域 /-->
-</div>
-<!-- 内容区域 /-->
-
-<script type="text/javascript">
-    var app = new Vue({
-        el: "#app",
-        data: {
-            //声明数据列表变量，供v-for使用
-            list: [],
-            searchEntity: {startDateStr: '', endDateStr: ''},
-            eChart: {day: [], salesCount: []},
-            //起始日期
-            startDateStr: '',
-            //终止日期
-            endDateStr: ''
-        },
-        methods: {
-            //查询echarts信息(销售额List及日期List)
-            findSalesCharts: function () {
-                axios.post("../echarts/findSalesCharts.do").then(function (response) {
-                    //vue把数据列表包装在data属性中
-                    app.eChart = response.data;
-                    //设置ECharts数据
-                    charts();
-                })
-            },
-            //日期查询功能调用
-            checkSalesBetweenDays: function () {
-                charts();
-            }
-        },
-        created: function () {
-            this.findSalesCharts();
-        }
-    });
-
-
-    //ECharts
-    var charts = function () {
-        var myChart = echarts.init(document.getElementById('salesCharts'));
-        axios.post("../echarts/findSalesCharts.do?startDateStr=" + app.startDateStr + "&endDateStr=" + app.endDateStr).then(function (response) {
-            //vue把数据列表包装在data属性中
-            app.eChart = response.data;
-            //中间变量
-            var salesCountList = app.eChart.salesCount;
-            var dayList = app.eChart.day;
-            // 基于准备好的dom，初始化echarts实例
-            // 指定图表的配置项和数据
-            myChart.setOption({
-                xAxis: {
-                    type: 'category',
-                    name: '日期',
-                    data: dayList
-                },
-                yAxis: {
-                    type: 'value',
-                    name: '销售额',
-                },
-                series: [{
-                    data: salesCountList,
-                    type: 'line'
-                }]
-            });
-        });
-    };
-</script>
+        <!-- 内容区域 /-->
 </body>
-
 
 </html>

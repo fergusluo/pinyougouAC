@@ -20,7 +20,9 @@ window.onload=function () {
 			//确认密码
 			password:"",
 			//验证码
-			code:""
+			code:"",
+
+
 		},
 		methods:{
 			//查询所有
@@ -103,13 +105,20 @@ window.onload=function () {
 				axios.get("/user/createSmsCode.do?phone=" + this.entity.phone).then(function (response) {
 					alert(response.data.message);
 				});
-			}
+			},
+			//跟据用户名查询
+			getByUsername:function () {
+				axios.get("/user/getByUsername.do").then(function (response) {
+					app.entity = response.data;
+				})
+			},
 
 		},
 		//Vue对象初始化后，调用此逻辑
 		created:function () {
 			//调用用分页查询，初始化时从第1页开始查询
-			this.findPage(1);
+			// this.findPage(1);
+			this.getByUsername();
 		}
 	});
 }

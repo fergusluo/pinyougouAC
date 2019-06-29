@@ -305,40 +305,6 @@
 					}
 				}
 				return paramMap;
-			},
-			/**
-			 * 上下架
-			 */
-			isSale:function (status) {
-				if ("1"==status){
-					axios.get("/goods/onsale.do?ids="+this.ids+"&status="+status).then(function (response) {
-						if(response.data.success){
-							//弹窗上架成功
-							alert(response.data.message);
-							//刷新当前页
-							app.findPage(app.pageNo);
-							//清空ids
-							app.ids = [];
-						}else{
-							alert(response.data.message);
-						}
-					})
-				}
-				if ("2"==status){
-					axios.get("/goods/offsale.do?ids="+this.ids+"&status="+status).then(function (response) {
-						if(response.data.success){
-							//弹窗上架成功
-							alert(response.data.message);
-							//刷新当前页
-							app.findPage(app.pageNo);
-							//清空ids
-							app.ids = [];
-						}else{
-							alert(response.data.message);
-						}
-					})
-				}
-
 			}
 		},
 		//监听变量值变化

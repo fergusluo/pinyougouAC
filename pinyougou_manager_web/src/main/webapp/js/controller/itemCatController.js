@@ -15,10 +15,6 @@ window.onload=function () {
 			entity:{},
 			//将要删除的id列表
 			ids:[],
-			//分类状态
-			status:['未审核','已审核','审核驳回','关闭'],
-			//分类删除状态
-			isDelete:['正常','已删除'],
 			//搜索包装对象
 			searchEntity:{},
 			//记录当前页面所在的分类级别:1|2|3
@@ -76,7 +72,7 @@ window.onload=function () {
 				})
 			},
 			//批量删除数据
-			isDele:function () {
+			dele:function () {
 				axios.get("../itemCat/delete.do?ids="+this.ids).then(function (response) {
 					if(response.data.success){
 						//刷新数据
@@ -113,31 +109,14 @@ window.onload=function () {
 				});
 				//级别+1
 				this.grade++;
-			},
-			//更改审核状态
-		 <!--item_cat表有更改请咨询罗强-->
-			updateStatus:function (status) {
-				axios.get("/itemCat/updateStatus.do?status=" + status + "&ids=" +this.ids )
-					.then(function (response) {
-						if (response.data.success) {
-							//刷新数据
-							app.findPage(app.pageNo);
-							// //初始化查询顶级节点
-							// this.findByParentId(this.entity_1);
-							//清空勾选的ids
-							app.ids = [];
-						} else {
-							alert(response.data.message);
-						}
-					});
 			}
 		},
 		//Vue对象初始化后，调用此逻辑
 		created:function () {
 			//调用用分页查询，初始化时从第1页开始查询
-			this.findPage(1);
-			// //初始化查询顶级节点
-			// this.findByParentId(this.entity_1);
+			//this.findPage(1);
+			//初始化查询顶级节点
+			this.findByParentId(this.entity_1);
 		}
 	});
 }

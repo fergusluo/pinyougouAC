@@ -10,7 +10,7 @@
         <property name="subscription">
             <map>
                 <!--设置主题-->
-                <entry key="topic-goods-shizhan">
+                <entry key="topic-goods">
                     <!--设置标签-->
                     <value>*</value>
                 </entry>

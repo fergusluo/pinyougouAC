@@ -123,6 +123,11 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	private RedisTemplate redisTemplate;
 
+	/**
+	 * 轮播图
+	 * @param categoryId
+	 * @return
+	 */
     @Override
     public List<TbContent> findByCategoryId(Long categoryId) {
     	//1、先从缓存中读取广告数据

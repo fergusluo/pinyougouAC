@@ -50,11 +50,5 @@ public interface BrandService {
 	 */
 	public void delete(Long [] ids);
 
-
-	/**
-	 * 更新品牌状态，brand表有更改请咨询罗强
-	 * @param ids
-	 * @param status
-	 */
-	public void updateBrandStatus(Long[] ids, String status);
+	
 }

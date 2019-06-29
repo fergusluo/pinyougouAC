@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
-import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.pojo.TbSpecificationOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -138,13 +137,10 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 	}
 
 	/**
-	 * 批量伪删除
+	 * 批量删除
 	 */
 	@Override
 	public void delete(Long[] ids) {
-		TbTypeTemplate tbTypeTemplate = new TbTypeTemplate();
-		//设置删除状态为删除
-		tbTypeTemplate.setIsDelete("1");
 		//数组转list
         List longs = Arrays.asList(ids);
         //构建查询条件
@@ -152,9 +148,8 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
         Example.Criteria criteria = example.createCriteria();
         criteria.andIn("id", longs);
 
-        //跟据查询条件删除数据（伪删除，设置状态）
-        typeTemplateMapper.updateByExampleSelective(tbTypeTemplate,example);
-
+        //跟据查询条件删除数据
+        typeTemplateMapper.deleteByExample(example);
 	}
 
     @Override
@@ -176,21 +171,6 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		}
 		return null;
     }
-
-	@Override
-	public void updateStatus(Long[] ids, String status) {
-		//更新的对象
-		TbTypeTemplate record = new TbTypeTemplate();
-		//设置状态
-		record.setStatus(status);
-		//组装条件
-		Example example = new Example(TbTypeTemplate.class);
-		Example.Criteria criteria = example.createCriteria();
-		//数组转换list
-		List longs = Arrays.asList(ids);
-		criteria.andIn("id", longs);
-		typeTemplateMapper.updateByExampleSelective(record, example);
-	}
 
 
 }

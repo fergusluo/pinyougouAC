@@ -67,16 +67,5 @@ public interface GoodsService {
 	 */
 	public List<TbItem> findItemListByGoodsIdsAndStatus(Long[] goodsIds, String status );
 
-	/**
-	 * 根据id列表和传入的上下架状态，上下架商品
-	 * @param ids
-	 * @param status
-	 */
-	public void updownStatus(Long[] ids, String status);
 
-	///**
-	// * 根据id列表，下架商品
-	//* @param ids
-	// */
-	//public void offsale(Long[] ids,String status);
 }
