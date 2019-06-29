@@ -53,9 +53,18 @@
                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal"
                                 data-target="#editModal"><i class="fa fa-file-o"></i> 新建
                         </button>
-                        <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        <!--status:['未审核','已审核','审核驳回','关闭'],状态：0未审核,1已审核,2审核驳回',3关闭-->
+                        <button @click="updateStatus('1')"  type="button" class="btn btn-default" title="审核通过"><i class="fa fa-trash-o"></i> 审核通过
                         </button>
-                        <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-check"></i> 刷新</button>
+                        <!--item_cat表有更改请咨询罗强-->
+                        <button @click="updateStatus('2')" type="button" class="btn btn-default" title="审核驳回"><i class="fa fa-trash-o"></i> 审核驳回
+                        </button>
+                        <button @click="findPage(pageNo)" type="button" class="btn btn-default" title="刷新"><i
+                                class="fa fa-refresh"></i> 刷新
+                        </button>
+                        <!--item_cat表有更改请咨询罗强-->
+                        <button @click="isDele()" type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        </button>
 
                     </div>
                 </div>
@@ -72,16 +81,20 @@
                     <th class="sorting_asc">分类ID</th>
                     <th class="sorting">分类名称</th>
                     <th class="sorting">类型模板ID</th>
+                    <th class="text-center">审核状态</th>
+                    <th class="text-center">是否删除</th>
 
                     <th class="text-center">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="cat in list">
-                    <td><input type="checkbox"></td>
+                    <td><input :value="cat.id" v-model="ids" type="checkbox"></td>
                     <td>{{cat.id}}</td>
                     <td>{{cat.name}}</td>
                     <td>{{cat.typeId}}</td>
+                    <td>{{status[cat.status]}}</td>
+                    <td>{{isDelete[cat.isDelete]}}</td>
                     <td class="text-center">
                         <!--<button v-if="grade < 3" @click="grade=grade+1;findByParentId(cat.id)" type="button" class="btn bg-olive btn-xs">查询下级</button>-->
                         <button v-if="grade < 4" @click="findByParentId(cat)" type="button" class="btn bg-olive btn-xs">查询下级</button>

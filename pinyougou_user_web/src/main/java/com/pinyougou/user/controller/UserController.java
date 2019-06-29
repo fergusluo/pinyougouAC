@@ -3,7 +3,6 @@ import java.util.List;
 
 import com.pinyougou.user.service.UserService;
 import com.pinyougou.utils.PhoneFormatCheckUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -120,9 +119,5 @@ public class UserController {
 		}
 		return new Result(false, "验证码发送失败！");
 	}
-	@RequestMapping("/getByUsername")
-	public TbUser getByUsername() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		return userService.getByUsername(username);
-	}
+	
 }

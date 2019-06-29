@@ -63,11 +63,5 @@ public interface UserService {
 	 * @return 结果true|false
 	 */
 	public boolean  checkSmsCode(String phone,String code);
-	/**
-	 * 根据ID获取实体
-	 * @param username
-	 * @return
-	 */
-	public TbUser getByUsername(String username);
 
 }

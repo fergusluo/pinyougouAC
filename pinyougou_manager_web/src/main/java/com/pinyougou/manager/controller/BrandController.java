@@ -1,6 +1,13 @@
 package com.pinyougou.manager.controller;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.pinyougou.pojo.TbItem;
+import entity.EsItem;
+import entity.MessageInfo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,11 +91,11 @@ public class BrandController {
 	}
 	
 	/**
-	 * 批量删除
+	 * 批量伪删除，brand表有更改请咨询罗强
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping("/delete")
+	@RequestMapping("/isDele")
 	public Result delete(Long [] ids){
 		try {
 			brandService.delete(ids);
@@ -98,5 +105,23 @@ public class BrandController {
 			return new Result(false, "删除失败");
 		}
 	}
-	
+
+	/**
+	 * 更新品牌状态，brand表有更改请咨询罗强1
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("updateBrandStatus")
+	public Result updateStatus(Long[] ids, String status){
+		try {
+
+			brandService.updateBrandStatus(ids,status);
+			return new Result(true, "操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true, "操作成功！");
+		}
+	}
+
 }
