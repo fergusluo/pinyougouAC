@@ -21,7 +21,7 @@ public interface UserService {
      * 分页查询列表
      * @return
      */
-    public PageResult<TbUser> findPage(int pageNum, int pageSize,TbUser user);
+    public PageResult<TbUser> findPage(int pageNum, int pageSize, TbUser user);
 	
 	
 	/**
@@ -48,7 +48,7 @@ public interface UserService {
 	 * 批量删除
 	 * @param ids
 	 */
-	public void delete(Long [] ids);
+	public void delete(Long[] ids);
 
 	/**
 	 * 生成短信验证码
@@ -62,7 +62,7 @@ public interface UserService {
 	 * @param code 验证码
 	 * @return 结果true|false
 	 */
-	public boolean  checkSmsCode(String phone,String code);
+	public boolean  checkSmsCode(String phone, String code);
 	/**
 	 * 根据ID获取实体
 	 * @param username

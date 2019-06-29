@@ -43,7 +43,7 @@
             //先查询轮播图
             this.findContentList(1);
             //查询一级分类
-            this.findAllItemCat();
+            // this.findAllItemCat();
         }
     });
 //}

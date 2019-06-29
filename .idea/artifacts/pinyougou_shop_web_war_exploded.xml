@@ -72,6 +72,14 @@
             <element id="module-output" name="pinyougou_pojo" />
           </element>
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
+          <element id="archive" name="pinyougou_order_interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou_order_interface" />
+          </element>
+          <element id="library" level="project" name="Maven: org.apache.rocketmq:rocketmq-client:4.0.0-incubating" />
+          <element id="library" level="project" name="Maven: org.apache.rocketmq:rocketmq-common:4.0.0-incubating" />
+          <element id="library" level="project" name="Maven: org.apache.rocketmq:rocketmq-remoting:4.0.0-incubating" />
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.36.Final" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

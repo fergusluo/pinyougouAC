@@ -103,5 +103,23 @@ public class ItemCatController {
 	public List<TbItemCat> findByParentId(Long parentId){
 		return itemCatService.findByParentId(parentId);
 	}
-	
+
+
+	/**
+	 * 更新分类状态，表有更改请咨询罗强1
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("updateStatus")
+	public Result updateStatus(Long[] ids, String status){
+		try {
+			itemCatService.updateStatus(ids,status);
+			return new Result(true, "操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true, "操作成功！");
+		}
+
+	}
 }

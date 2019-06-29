@@ -5,6 +5,7 @@ import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbOrderItem;
+import com.pinyougou.pojogroup.Order;
 import entity.PageResult;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,16 +25,29 @@ public class OrderController {
     public PageResult findPage(int pageNo, int pageSize, @RequestBody TbOrder order) {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         order.setUserId(userId);
-        return orderService.findPage(pageNo, pageSize,order);
+        PageResult<Order> page = orderService.findPage(pageNo, pageSize, order);
+        //ArrayList<TbOrder> list = new ArrayList<>();
+        //PageResult<TbOrder> pageResult = new PageResult<>();
+        //for (Order row : page.getRows()) {
+        //    list.add(row.getOrder());
+        //}
+        //pageResult.setPages(page.getPages());
+        //pageResult.setRows(list);
+        //return pageResult;
+        return page;
     }
+
     @RequestMapping("getOrderItems")
     public List<TbOrderItem> getOrderItems(String[] ids) {
         List<TbOrderItem> list = new ArrayList<>();
-        for (String id : ids) {
-            long orderId = Long.parseLong(id);
-            List<TbOrderItem> items = orderService.getOrderItems(orderId);
-            list.addAll(items);
-        }
+        if (ids != null && ids.length > 0 )
+            for (String id : ids) {
+                if (!"".equals("")) {
+                    long orderId = Long.parseLong(id);
+                    List<TbOrderItem> items = orderService.getOrderItems(orderId);
+                    list.addAll(items);
+                }
+            }
         return list;
     }
 }

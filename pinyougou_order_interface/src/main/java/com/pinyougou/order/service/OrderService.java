@@ -4,6 +4,7 @@ import com.pinyougou.pojo.TbOrder;
 
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.pojogroup.Order;
 import entity.PageResult;
 /**
  * 业务逻辑接口
@@ -23,7 +24,7 @@ public interface OrderService {
      * 分页查询列表
      * @return
      */
-    public PageResult<TbOrder> findPage(int pageNum, int pageSize,TbOrder order);
+    public PageResult<Order> findPage(int pageNum, int pageSize, TbOrder order);
 	
 	
 	/**
@@ -43,7 +44,7 @@ public interface OrderService {
 	 * @param id
 	 * @return
 	 */
-	public TbOrder getById(Long id);
+	public Order getById(Long id);
 	
 	
 	/**
@@ -65,10 +66,6 @@ public interface OrderService {
 	 * @param transaction_id 微信返回的交易流水号
 	 */
 	public void updateOrderStatus(String out_trade_no,String transaction_id);
-	/**
-	 * 根据orderId获取订单实体
-	 * @param orderId
-	 * @return
-	 */
-	public List<TbOrderItem> getOrderItems(long orderId);
+
+    List<TbOrderItem> getOrderItems(long orderId);
 }

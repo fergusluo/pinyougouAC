@@ -1,5 +1,6 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -43,19 +44,28 @@ public class BrandServiceImpl implements BrandService {
         //构建查询条件
         Example example = new Example(TbBrand.class);
         Example.Criteria criteria = example.createCriteria();
-		
-		if(brand!=null){			
-						//如果字段不为空
-			if (brand.getName()!=null && brand.getName().length()>0) {
-				criteria.andLike("name", "%" + brand.getName() + "%");
-			}
-			//如果字段不为空
-			if (brand.getFirstChar()!=null && brand.getFirstChar().length()>0) {
-				criteria.andLike("firstChar", "%" + brand.getFirstChar() + "%");
-			}
-	
-		}
 
+        if (brand != null) {
+            //如果字段不为空
+            if (brand.getName() != null && brand.getName().length() > 0) {
+                criteria.andLike("name", "%" + brand.getName() + "%");
+            }
+            //如果字段不为空
+            if (brand.getFirstChar() != null && brand.getFirstChar().length() > 0) {
+                criteria.andLike("firstChar", "%" + brand.getFirstChar() + "%");
+            }
+            //如果字段不为空
+            if (brand.getBrandStatus() != null && brand.getBrandStatus().length() > 0) {
+                criteria.andLike("brandStatus", "%" + brand.getBrandStatus() + "%");
+            }
+            //如果字段不为空
+            if (brand.getSellerId() != null && brand.getSellerId().length() > 0) {
+                criteria.andLike("sellerId", "%" + brand.getSellerId() + "%");
+            }
+
+        }
+
+        criteria.andIn("isDelete", Collections.singletonList(0));
         //查询数据
         List<TbBrand> list = brandMapper.selectByExample(example);
         //返回数据列表
@@ -73,7 +83,18 @@ public class BrandServiceImpl implements BrandService {
 	 */
 	@Override
 	public void add(TbBrand brand) {
-		brandMapper.insertSelective(brand);		
+		//构建查询条件
+		Example example = new Example(TbBrand.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andLike("name", brand.getName());
+		criteria.andIn("isDelete", Collections.singletonList(0));
+		List<TbBrand> tbBrands = brandMapper.selectByExample(example);
+		//当有重名时不添加
+		if (tbBrands.size() == 0) {
+			brandMapper.insertSelective(brand);
+			return;
+		}
+		//int i = 1 / 0;
 	}
 
 	
@@ -96,20 +117,43 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	/**
-	 * 批量删除
+	 * 批量伪删除，brand表有更改请咨询罗强
 	 */
 	@Override
 	public void delete(Long[] ids) {
-		//数组转list
-        List longs = Arrays.asList(ids);
-        //构建查询条件
-        Example example = new Example(TbBrand.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andIn("id", longs);
+		//更新的对象
+		TbBrand record = new TbBrand();
+		//设置状态
+		record.setIsDelete("1");
 
-        //跟据查询条件删除数据
-        brandMapper.deleteByExample(example);
+		//数组转换list
+		List longs = Arrays.asList(ids);
+		//组装条件
+		Example example = new Example(TbBrand.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andIn("id", longs);
+		brandMapper.updateByExampleSelective(record, example);
 	}
-	
-	
+
+	/**
+	 * brand表有更改请咨询罗强
+	 * @param ids 品牌id数组
+	 * @param status
+	 */
+	@Override
+	public void updateBrandStatus(Long[] ids, String status) {
+		//更新的对象
+		TbBrand record = new TbBrand();
+		//设置状态
+		record.setBrandStatus(status);
+		//组装条件
+		Example example = new Example(TbBrand.class);
+		Example.Criteria criteria = example.createCriteria();
+		//数组转换list
+		List longs = Arrays.asList(ids);
+		criteria.andIn("id", longs);
+		brandMapper.updateByExampleSelective(record, example);
+	}
+
+
 }

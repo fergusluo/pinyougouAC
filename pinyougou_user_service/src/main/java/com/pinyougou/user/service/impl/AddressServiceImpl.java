@@ -1,16 +1,7 @@
 package com.pinyougou.user.service.impl;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.github.abel533.mapper.Mapper;
-import com.pinyougou.mapper.TbAreasMapper;
-import com.pinyougou.mapper.TbCitiesMapper;
-import com.pinyougou.mapper.TbProvincesMapper;
-import com.pinyougou.pojo.TbAreas;
-import com.pinyougou.pojo.TbCities;
-import com.pinyougou.pojo.TbProvinces;
 import com.pinyougou.user.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -31,13 +22,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Autowired
 	private TbAddressMapper addressMapper;
-
-	@Autowired
-	private TbProvincesMapper provincesMapper;
-	@Autowired
-	private TbCitiesMapper citiesMapper;
-	@Autowired
-	private TbAreasMapper areasMapper;
+	
 	/**
 	 * 查询全部
 	 */
@@ -165,65 +150,6 @@ public class AddressServiceImpl implements AddressService {
 		List<TbAddress> addresses = addressMapper.select(where);
 		return addresses;
     }
-
-	@Override
-	public List<TbProvinces> findProvinces() {
-		List<TbProvinces> list = provincesMapper.select(null);
-		return list;
-	}
-
-	@Override
-	public List<TbCities> findCities(String parentId) {
-		TbCities where = new TbCities();
-		where.setProvinceid(parentId);
-		List<TbCities> list = citiesMapper.select(where);
-		return list;
-	}
-
-	@Override
-	public List<TbAreas> findAreas(String parentId) {
-		TbAreas where = new TbAreas();
-		where.setCityid(parentId);
-		List<TbAreas> list =areasMapper.select(where);
-		return list;
-	}
-
-	@Override
-	public Map<String, String> addressMap() {
-		Map<String, String> map = new HashMap<>();
-		List<TbProvinces> provincesList = provincesMapper.select(null);
-		List<TbCities> citiesList = citiesMapper.select(null);
-		List<TbAreas> areasList = areasMapper.select(null);
-		for (TbProvinces province : provincesList) {
-			map.put(province.getProvinceid(),province.getProvince());
-		}
-		for (TbCities city : citiesList) {
-			map.put(city.getCityid(),city.getCity());
-		}
-		for (TbAreas area : areasList) {
-			map.put(area.getAreaid(),area.getArea());
-		}
-		return map;
-	}
-
-	@Override
-	public int deleteOne(Long id) {
-		int i = addressMapper.deleteByPrimaryKey(id);
-		return i;
-	}
-
-	@Override
-	public int setDefault(Long id,String userId) {
-		TbAddress where = new TbAddress();
-		where.setIsDefault("1");
-		where.setUserId(userId);
-		TbAddress address = addressMapper.selectOne(where);
-		address.setIsDefault("0");
-		addressMapper.updateByPrimaryKey(address);
-		where.setId(id);
-		int i = addressMapper.updateByPrimaryKeySelective(where);
-		return i;
-	}
 
 
 }

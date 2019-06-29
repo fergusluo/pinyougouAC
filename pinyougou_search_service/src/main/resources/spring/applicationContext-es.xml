@@ -13,7 +13,7 @@
     <!-- 扫描Dao包，自动创建实例，扫描所有继承ElasticsearchRepository接口的接口 -->
     <elasticsearch:repositories base-package="com.pinyougou.es.dao"/>
     <!-- 配置elasticSearch的连接 -->
-    <elasticsearch:transport-client id="client" cluster-nodes="localhost:9300" cluster-name="elasticsearch"/>
+    <elasticsearch:transport-client id="client" cluster-nodes="localhost:9300" cluster-name="my-elasticsearch"/>
     <!-- ElasticSearch模版对象 -->
     <bean id="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
         <constructor-arg name="client" ref="client"></constructor-arg>

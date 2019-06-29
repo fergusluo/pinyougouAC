@@ -14,9 +14,9 @@
     <dubbo:application name="pinyougou-content-service"/>
     <!--配置注册中心-->
     <!--单机版-->
-    <!--<dubbo:registry protocol="zookeeper" address="192.168.218.128:2181"/>-->
+    <dubbo:registry protocol="zookeeper" address="192.168.218.128:2181"/>
     <!--集群版zookeeper使用-->
-    <dubbo:registry protocol="zookeeper" address="192.168.218.128:2181,192.168.218.128:2182,192.168.218.128:2183"/>
+<!--    <dubbo:registry protocol="zookeeper" address="192.168.218.128:2181,192.168.218.128:2182,192.168.218.128:2183"/>-->
 
     <!--配置dubbo-@Service注解包扫描路径-->
     <dubbo:annotation package="com.pinyougou.content.service.impl"/>

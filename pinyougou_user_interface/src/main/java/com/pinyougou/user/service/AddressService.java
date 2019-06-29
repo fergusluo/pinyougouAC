@@ -26,7 +26,7 @@ public interface AddressService {
      * 分页查询列表
      * @return
      */
-    public PageResult<TbAddress> findPage(int pageNum, int pageSize,TbAddress address);
+    public PageResult<TbAddress> findPage(int pageNum, int pageSize, TbAddress address);
 	
 	
 	/**
@@ -53,7 +53,7 @@ public interface AddressService {
 	 * 批量删除
 	 * @param ids
 	 */
-	public void delete(Long [] ids);
+	public void delete(Long[] ids);
 
 	/**
 	 * 根据用户查询地址
@@ -96,5 +96,5 @@ public interface AddressService {
 	 * 设为默认
 	 * @param id
 	 */
-	public int setDefault(Long id,String userId);
+	public int setDefault(Long id, String userId);
 }
