@@ -57,10 +57,4 @@ public interface ItemCatService {
 	 */
 	public List<TbItemCat> findByParentId(Long parentId);
 
-	/**
-	 * 更改审核状态
-	 * @param ids
-	 * @param status
-	 */
-	public void updateStatus(Long[] ids, String status);
 }

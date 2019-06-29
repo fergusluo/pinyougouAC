@@ -28,7 +28,7 @@
 <!-- .box-body -->
 <div id="app">
     <div class="box-header with-border">
-        <h3 class="box-title">商品管理</h3>{{searchEntity}}
+        <h3 class="box-title">商品管理</h3>
     </div>
 
     <div class="box-body">
@@ -51,10 +51,6 @@
                         </button>
                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
                                 class="fa fa-refresh"></i> 刷新
-                        </button>
-                        <button type="button" class="btn btn-default" title="上架" @click="isSale('1')"><i class="fa fa-trash-o"></i> 上架
-                        </button>
-                        <button type="button" class="btn btn-default" title="下架" @click="isSale('2')"><i class="fa fa-trash-o"></i> 下架
                         </button>
                     </div>
                 </div>
@@ -93,7 +89,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="goods in list">
-                    <td><input v-model="ids" :value="goods.id"  type="checkbox"></td>
+                    <td><input type="checkbox"></td>
                     <td>{{goods.id}}</td>
                     <td>{{goods.goodsName}}</td>
                     <td>{{goods.price}}</td>

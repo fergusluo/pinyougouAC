@@ -3,8 +3,6 @@ import java.util.List;
 import com.pinyougou.pojo.TbSeller;
 
 import entity.PageResult;
-import entity.Result;
-
 /**
  * 业务逻辑接口
  * @author Steven
@@ -52,11 +50,5 @@ public interface SellerService {
 	 */
 	public void delete(Long [] ids);
 
-
-	/**
-	 * 查询id
-	 * @param name
-	 * @return
-	 */
-	String getByName(String name);
+	
 }
